@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  BEFORE DEPLOYING, one thing to fill in:
-
-  Screenshots         Drop 4 PNGs into /screenshots/ named:
-                        log.png  stats.png  report.png  roster.png
-                      then delete the .frame--empty placeholder divs in the
-                      "Screenshots" section and uncomment the <img> above each.
+  Screenshots         Live in /screenshots/ (log, stats, report, roster +
+                      ipad). To refresh them, replace the PNGs in that folder;
+                      the file names and <img> tags below stay the same.
 
   Beta signup goes through email, not a public TestFlight link. If you later
   want a direct TestFlight invite URL instead, the buttons to change are the
@@ -256,8 +253,7 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <!-- <img src="/screenshots/log.png" alt="The play log during a game, showing recent plays with formation, call, ball carrier and yards gained."> -->
-              <div class="frame--empty">Screenshot:<br>play log</div>
+              <img src="/screenshots/log.png" width="393" height="852" alt="The play log during a game, showing the live score, current drive, and recent plays with formation, call, ball carrier and yards gained.">
             </div>
             <figcaption>The play log, at a glance</figcaption>
           </figure>
@@ -266,8 +262,7 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <!-- <img src="/screenshots/stats.png" alt="Live player statistics updating during the game."> -->
-              <div class="frame--empty">Screenshot:<br>live stats</div>
+              <img src="/screenshots/stats.png" width="393" height="852" alt="Live player statistics updating during the game, with per-player rushing, receiving and passing totals.">
             </div>
             <figcaption>Stats as the game goes</figcaption>
           </figure>
@@ -276,8 +271,7 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <!-- <img src="/screenshots/report.png" alt="The postgame report showing the line score and player totals."> -->
-              <div class="frame--empty">Screenshot:<br>postgame report</div>
+              <img src="/screenshots/report.png" width="393" height="852" alt="The postgame report showing the line score, quarter-by-quarter scoring, and player totals.">
             </div>
             <figcaption>The postgame report</figcaption>
           </figure>
@@ -286,14 +280,21 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <!-- <img src="/screenshots/roster.png" alt="The team roster and playbook setup screen."> -->
-              <div class="frame--empty">Screenshot:<br>roster &amp; playbook</div>
+              <img src="/screenshots/roster.png" width="393" height="852" alt="The team roster, with key players pinned to the top and everyone else listed by number.">
             </div>
             <figcaption>Roster and playbook</figcaption>
           </figure>
         </div>
 
       </div>
+
+      <!-- iPad landscape: the split-screen dashboard -->
+      <figure class="ipad-shot">
+        <div class="ipad-frame">
+          <img src="/screenshots/ipad.png" width="1194" height="834" alt="On an iPad in landscape, the game dashboard splits in two: play entry with the big ADD PLAY button on the left, and the scoring summary and play log on the right.">
+        </div>
+        <figcaption>On iPad in landscape — entry on the left, the record on the right</figcaption>
+      </figure>
     </div>
   </section>
 

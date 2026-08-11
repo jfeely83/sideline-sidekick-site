@@ -375,6 +375,29 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   border-radius: 15px;
 }
 
+/* iPad landscape showcase below the phone gallery */
+.ipad-shot {
+  margin: clamp(36px, 6vw, 64px) 0 0;
+}
+
+.ipad-frame {
+  max-width: 860px;
+  margin-inline: auto;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 14px;
+  background: var(--paper);
+  box-shadow: 0 20px 46px -22px rgba(11,22,36,.5);
+}
+.ipad-frame img { border-radius: 14px; width: 100%; }
+
+.ipad-shot figcaption {
+  margin-top: 16px;
+  font-size: .92rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 /* --------------------------------------------------------------------------
    Prose (support, privacy, FAQ body copy)
    -------------------------------------------------------------------------- */
