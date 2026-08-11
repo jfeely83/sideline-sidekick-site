@@ -5,18 +5,20 @@
    ========================================================================== */
 
 :root {
-  /* Brand */
-  --ink:        #0B1624;   /* headlines, dark surfaces */
-  --navy:       #13273F;   /* secondary dark */
-  --slate:      #43566C;   /* body text on light */
-  --muted:      #6B7C90;   /* captions, meta */
-  --line:       #DFE5EB;   /* hairlines */
-  --wash:       #F5F8FA;   /* tinted section background */
+  /* Brand
+     Sampled from the SideKick logo (SideKick-1024/sidekick-1024-lockup).
+     Every pairing below meets WCAG AA (4.5:1) for normal text. */
+  --ink:        #0C243C;   /* headlines, dark surfaces — logo's deepest navy */
+  --navy:       #0C3C60;   /* secondary dark — the badge ring navy */
+  --slate:      #3A5068;   /* body text on light */
+  --muted:      #5E7085;   /* captions, meta */
+  --line:       #DCE3EA;   /* hairlines */
+  --wash:       #FAF6EC;   /* tinted section background — logo cream */
   --paper:      #FFFFFF;
 
-  --accent:     #D4551C;   /* the one accent: buttons, rules, numerals */
-  --accent-ink: #A84013;   /* accent as small text on white (AA compliant) */
-  --accent-soft:#FBEDE6;   /* accent tint background */
+  --accent:     #B43C24;   /* the one accent: buttons, rules, numerals */
+  --accent-ink: #9A331E;   /* accent as small text on white (AA compliant) */
+  --accent-soft:#FAEDE8;   /* accent tint background */
 
   /* Type */
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
@@ -200,7 +202,7 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 }
 
 .btn--primary { background: var(--accent); color: #fff; }
-.btn--primary:hover { background: #B8460F; color: #fff; }
+.btn--primary:hover { background: var(--accent-ink); color: #fff; }
 
 .btn--ghost {
   background: transparent;

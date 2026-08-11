@@ -1,0 +1,12 @@
+{
+  "name": "sideline-sidekick-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Marketing and policy site for Sideline SideKick Tracker",
+  "scripts": {
+    "dev": "wrangler pages dev public"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
