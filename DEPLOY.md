@@ -23,8 +23,9 @@ npx wrangler pages deployment list --project-name sideline-sidekick-site
 ```
 
 There is no separate publish step and nothing to run by hand. Do not use
-`wrangler deploy` — that is the Workers command, and it publishes to a Worker that
-nothing points at.
+`wrangler deploy` — that is the Workers command, and this site is not a Worker. This
+account has exactly one Pages project and no Workers; if a second thing by a similar
+name ever appears, it is not what serves the domain.
 
 ## Preview locally
 
@@ -72,18 +73,20 @@ Every color is a custom property at the top of `styles.css`, sampled from the lo
 meets WCAG AA (4.5:1). Changing `--accent` and `--accent-ink` rebrands the whole site;
 re-check contrast if you do.
 
+## The call-to-action buttons
+
+Both primary CTAs on the home page are `mailto:support@sideline-sidekick.com` links,
+and that is **deliberate**. The beta is closed and each coach is vetted by hand before
+an invite goes out, so the button starts an email rather than dropping someone into
+TestFlight. This is not an oversight — leave it alone unless the beta opens up.
+
 ## Still to fill in
 
-1. **The call-to-action buttons.** Both primary CTAs on the home page are
-   `mailto:support@sideline-sidekick.com` links. If the app should send people to
-   TestFlight or the App Store, that URL needs to replace the `mailto:` in the two
-   `.btn--primary` anchors in `index.html`.
-
-2. **Screenshots.** `public/screenshots/` is empty. Add `log.png`, `stats.png`,
+1. **Screenshots.** `public/screenshots/` is empty. Add `log.png`, `stats.png`,
    `report.png` and `roster.png`, then in `index.html` delete the four
    `frame--empty` placeholder divs and uncomment the `<img>` tag above each.
    Use the demo team, not a real roster.
 
-3. **Two unverified answers in the FAQ**, both marked with a `CHECK` comment in
+2. **Two unverified answers in the FAQ**, both marked with a `CHECK` comment in
    `faq.html`: what the app costs after the beta, and whether there is any data
    export beyond text and PDF. These are live on the public site as written.
