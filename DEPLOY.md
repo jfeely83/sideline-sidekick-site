@@ -88,16 +88,21 @@ legitimately *sends* as this domain. Verified 2026-08-12: MX points at
 `route1/2/3.mx.cloudflare.net` and SPF is published as
 `v=spf1 include:_spf.mx.cloudflare.net ~all`.
 
-**DMARC is still missing** — `_dmarc.sideline-sidekick.com` returns nothing. Add a TXT
-record named `_dmarc` with the value:
+**DMARC was added 2026-08-12** — a TXT record on `_dmarc` reading:
 
 ```
 v=DMARC1; p=none; rua=mailto:support@sideline-sidekick.com
 ```
 
-`p=none` is monitoring only: nothing gets blocked, and the aggregate reports show who is
-sending as the domain. Since nothing legitimately sends as it, `p=reject` is the correct
-end state — move there once a month of reports comes back clean.
+`p=none` is monitoring only: nothing gets blocked, and the aggregate reports go to
+`support@` showing who is sending as the domain. Since nothing legitimately sends as it,
+`p=reject` is the correct end state — move there once a month of reports comes back
+clean. Reports arrive as XML attachments, roughly one a day per reporting provider, and
+they land in the same inbox as the beta requests.
+
+Still open on the DNS side: **`www.sideline-sidekick.com` does not resolve.** Cloudflare
+flags it. Anyone typing the `www.` form gets a failure rather than the site, which is
+worth fixing before the beta widens.
 
 ## Keeping the FAQ honest
 
