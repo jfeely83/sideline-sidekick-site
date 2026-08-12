@@ -100,9 +100,40 @@ v=DMARC1; p=none; rua=mailto:support@sideline-sidekick.com
 clean. Reports arrive as XML attachments, roughly one a day per reporting provider, and
 they land in the same inbox as the beta requests.
 
-Still open on the DNS side: **`www.sideline-sidekick.com` does not resolve.** Cloudflare
-flags it. Anyone typing the `www.` form gets a failure rather than the site, which is
-worth fixing before the beta widens.
+## www
+
+`www.sideline-sidekick.com` was added 2026-08-12 and redirects to the apex. It is two
+pieces, and it does not work with only one of them:
+
+1. A **proxied CNAME** `www` → `sideline-sidekick.com`. Proxied is load-bearing: it is
+   what puts the hostname on Cloudflare's edge so a rule can act on it. The DNS record
+   on its own returns **522** — the edge has nothing that answers for the `www` Host
+   header, because the Pages project's custom domain is the apex.
+2. A **Redirect Rule**, "Redirect from WWW to root [Template]", matching
+   `https://www.*` → `https://${1}` with a 301 and *Preserve query string* on (the
+   template leaves that off). Path and query both survive:
+   `https://www.…/faq?a=1` → `https://sideline-sidekick.com/faq?a=1`.
+
+Deploying the rule shows a warning that `www` may not be proxied. It is stale if the DNS
+record was just added — choose *Ignore and deploy rule anyway*, not *Create a new proxied
+DNS record*, which would duplicate what is already there.
+
+**Known gap: `http://www.` still returns 522.** The rule's pattern only matches `https`,
+and nothing upgrades `http` → `https` for this hostname first. It does not affect typed
+addresses — browsers try HTTPS — only old `http://www.` links. Two ways to close it, and
+neither has been done:
+
+- **Enable Always Use HTTPS** (SSL/TLS → Edge Certificates). One toggle, zone-wide, and
+  it is where the scheme upgrade belongs. **Check the SSL/TLS encryption mode first:** the
+  dashboard warns that this loops when the origin also forces HTTPS redirects, and Pages
+  does force them. On **Full** it is safe; on **Flexible** it would loop, because the edge
+  would fetch the origin over HTTP and Pages would 301 forever. The apex serving 200 over
+  HTTPS today is evidence the mode is Full, but it was never confirmed.
+- **Or widen the rule** to a custom filter expression on `http.host` rather than a
+  scheme-prefixed wildcard, which keeps the blast radius to `www` alone.
+
+Note that the apex already redirects HTTP → HTTPS without Always Use HTTPS. That comes
+from Pages, not from a zone setting, which is exactly why it does not cover `www`.
 
 ## Keeping the FAQ honest
 
