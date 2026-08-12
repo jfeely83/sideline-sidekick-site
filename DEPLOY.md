@@ -80,13 +80,38 @@ and that is **deliberate**. The beta is closed and each coach is vetted by hand 
 an invite goes out, so the button starts an email rather than dropping someone into
 TestFlight. This is not an oversight — leave it alone unless the beta opens up.
 
-## Still to fill in
+## Email
 
-1. **Screenshots.** `public/screenshots/` is empty. Add `log.png`, `stats.png`,
-   `report.png` and `roster.png`, then in `index.html` delete the four
-   `frame--empty` placeholder divs and uncomment the `<img>` tag above each.
-   Use the demo team, not a real roster.
+`support@sideline-sidekick.com` — every CTA on the site is a `mailto:` to it — is
+delivered by **Cloudflare Email Routing**, which is inbound forwarding only. Nothing
+legitimately *sends* as this domain. Verified 2026-08-12: MX points at
+`route1/2/3.mx.cloudflare.net` and SPF is published as
+`v=spf1 include:_spf.mx.cloudflare.net ~all`.
 
-2. **Two unverified answers in the FAQ**, both marked with a `CHECK` comment in
-   `faq.html`: what the app costs after the beta, and whether there is any data
-   export beyond text and PDF. These are live on the public site as written.
+**DMARC is still missing** — `_dmarc.sideline-sidekick.com` returns nothing. Add a TXT
+record named `_dmarc` with the value:
+
+```
+v=DMARC1; p=none; rua=mailto:support@sideline-sidekick.com
+```
+
+`p=none` is monitoring only: nothing gets blocked, and the aggregate reports show who is
+sending as the domain. Since nothing legitimately sends as it, `p=reject` is the correct
+end state — move there once a month of reports comes back clean.
+
+## Keeping the FAQ honest
+
+`faq.html` describes what the app actually does, and the app changes. Answers that were
+once marked with a `CHECK` comment — pricing, the minimum iOS version, the spreadsheet
+export — were all settled on 2026-08-12 against the app source. Two are pinned to facts
+that can drift:
+
+- **Minimum iOS version** says 17, from `IPHONEOS_DEPLOYMENT_TARGET` in the app project.
+- **The data export answer** describes five CSVs (play-by-play, players, formations and
+  plays, drives, scoring), a per-game export and a season export. That comes from
+  `Engine/SpreadsheetExport.swift`. It was wrong until 2026-08-12 — it claimed text and
+  PDF only, which would have told a coach there was no spreadsheet export at all.
+
+This site is the one privacy surface not in the app repo, so a code change never prompts
+you to update it. `BACKLOG.md` in the app repo makes the same point about the privacy
+policy.

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <!--
   Beta signup goes through email rather than a public TestFlight link.
-  Items flagged with the word CHECK in a comment are ones I could not verify
-  from your repo. Confirm that wording before you deploy.
+  Every answer here has been checked against the app. The three that once
+  carried a CHECK comment were settled on 2026-08-12: pricing, the minimum
+  iOS version, and the spreadsheet export.
 -->
 <html lang="en">
 <head>
@@ -71,7 +72,7 @@
           <details>
             <summary>What does it cost?</summary>
             <div class="answer">
-              <!-- CHECK: confirm you're happy saying this while pricing is undecided -->
+              <!-- Wording confirmed by Jeff 2026-08-12; deliberately commits to no price. -->
               <p>
                 Nothing while it's in beta. Pricing after that hasn't been settled. If it does change, testers will hear it from me first, not from an App Store receipt.
               </p>
@@ -81,9 +82,8 @@
           <details>
             <summary>What do I need to run it?</summary>
             <div class="answer">
-              <!-- CHECK: add your minimum iOS version here if you want to be specific -->
               <p>
-                An iPhone or an iPad. Most of the staffs using it are on iPads, and it's built for both. In landscape on an iPad the screen splits in two, with entry on the left and the play log on the right.
+                An iPhone or an iPad running iOS 17 or later. Most of the staffs using it are on iPads, and it's built for both. In landscape on an iPad the screen splits in two, with entry on the left and the play log on the right.
               </p>
               <p>There is no Android version, and no web version.</p>
             </div>
@@ -275,9 +275,11 @@
           <details>
             <summary>Can I get the data out?</summary>
             <div class="answer">
-              <!-- CHECK: if there's a CSV/spreadsheet export, say so here. Otherwise this is accurate. -->
               <p>
-                The report shares as text or PDF today. If you need it in another form, say a spreadsheet or a particular stat service's format, put that in an email. It's exactly the kind of thing the beta is for.
+                Yes. Any game exports to spreadsheets from the game screen, and the whole season exports in one go from the games list. You get five CSV files either way — the play-by-play, players, formations and plays, drives, and scoring — and every one of them carries a Game column, so a season's worth stacks on top of itself and still groups correctly.
+              </p>
+              <p>
+                The postgame report itself shares as text or PDF. If you need something neither of those covers, say a particular stat service's format, put that in an email. It's exactly the kind of thing the beta is for.
               </p>
             </div>
           </details>
