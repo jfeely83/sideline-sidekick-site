@@ -8,9 +8,9 @@
   no team names, no invite codes — and must stay in step with
   Sideline/PrivacyInfo.xcprivacy and the App Store Connect privacy answers.
 
-  Still open from the previous pass: under "About student athlete information"
-  the text says the Fan role is "described above", but the description of that
-  role comes after it. Reword or reorder if you agree.
+  The old forward-reference under "About student athlete information" is fixed:
+  the first mention of the Fan role now defines it, and the later one points
+  back at that.
 -->
 <html lang="en">
 <head>
@@ -158,9 +158,17 @@
       </p>
 
       <p>
-        Crash reports are handled by Firebase Crashlytics, part of the same
-        Google Firebase service described below. Crash reporting is on in every
-        released version of the app and there is no setting to turn it off.
+        Two kinds of report go out, and both are covered by everything said
+        above: an actual crash, and a quiet failure that did not crash the app.
+        Apple counts the second kind as diagnostic information rather than crash
+        data, so it is listed separately on the App Store, but the app treats
+        them identically and neither one carries a name.
+      </p>
+
+      <p>
+        Both are handled by Firebase Crashlytics, part of the same Google
+        Firebase service described below. Reporting is on in every released
+        version of the app and there is no setting to turn it off.
       </p>
 
       <p>
@@ -179,15 +187,15 @@
 
       <p>
         A player or a parent may be given the team's invite code by the coaching
-        staff so they can follow the game and see statistics. They join in the
-        restricted "Fan" role described above: read-only, no access to the
-        playbook, and no ability to add or change any information about anyone.
+        staff so they can follow the game and see statistics. They join in a
+        restricted "Fan" role: read-only, no access to the playbook, and no
+        ability to add or change any information about anyone.
         Creating an account requires an email address and a password.
       </p>
 
       <p>
         <strong>Who can see it.</strong> Roster information is visible only to
-        people the team's owner has admitted to that team in the app. That is the coaching staff. If the owner chooses to share the team's invite code more widely, it also includes parents and players, who join in a restricted "Fan" role. A Fan can see the score, the play-by-play and player
+        people the team's owner has admitted to that team in the app. That is the coaching staff. If the owner chooses to share the team's invite code more widely, it also includes parents and players, who join in the restricted "Fan" role described above. A Fan can see the score, the play-by-play and player
         statistics. A Fan cannot change anything, and cannot see the team's
         formation or play names.
       </p>
