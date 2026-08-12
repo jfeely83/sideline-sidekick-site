@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <!--
-  Copy is carried over verbatim from the live policy. Only the presentation
-  changed. One thing to look at: under "About student athlete information" the
-  text says the Fan role is "described above", but the description of that role
-  comes after it. Reword or reorder if you agree.
+  Revised 2026-08-12 for Crashlytics, which the app added on 11 August. The
+  policy as written claimed no analytics or tracking software "of any kind" in
+  four places, which stopped being true; those are corrected and there is now a
+  "Crash and error reports" section. What the section claims is enforced in the
+  app by Sideline/Firebase/CrashReporting.swift — no user identifier, no names,
+  no team names, no invite codes — and must stay in step with
+  Sideline/PrivacyInfo.xcprivacy and the App Store Connect privacy answers.
+
+  Still open from the previous pass: under "About student athlete information"
+  the text says the Fan role is "described above", but the description of that
+  role comes after it. Reword or reorder if you agree.
 -->
 <html lang="en">
 <head>
@@ -41,7 +48,7 @@
     <div class="wrap wrap--narrow">
       <span class="eyebrow">Sideline SideKick Tracker</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 7 August 2026 (updated)</p>
+      <p class="meta">Effective 12 August 2026 (updated)</p>
     </div>
   </div>
 
@@ -56,8 +63,10 @@
           only to members of that team, and only to the extent the team's owner
           allows. It is never sold, never shared with other companies, never
           used for advertising, and never used to track anyone across other apps
-          or websites. The app contains no analytics or tracking software of any
-          kind.
+          or websites. The app contains no analytics and no advertising
+          software. The one thing it sends that nobody typed in is a crash and
+          error report when something goes wrong; those contain no names and are
+          not linked to your account.
         </p>
       </div>
 
@@ -110,6 +119,49 @@
           copy of it with the team. The app has no access to the rest of your photo library and never reads it. iOS hands over only the picture you pick. Adding a logo is optional and the app works without one.
         </p>
       </div>
+
+      <h3>3. Crash and error reports</h3>
+
+      <p>
+        When the app crashes, or when something inside it fails quietly — a game
+        that will not open, a save the server refuses, a roster import that comes
+        back empty — the app sends a report so the problem can be found and
+        fixed. This is the only information the app collects that nobody typed
+        in.
+      </p>
+
+      <p>A report contains:</p>
+
+      <ul>
+        <li>what kind of failure it was, and where in the app it happened;</li>
+        <li>the version of the app, the device model, and the iOS version;</li>
+        <li>the internal database id of the record involved, which is a random string of characters and not a name;</li>
+        <li>a random identifier for that installation of the app, which is what lets the service count how many devices a problem affects rather than just how many times it happened.</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <strong>Nothing that identifies a person goes into a crash report.</strong>
+          Never a player's name, jersey number, grade or position. Never an email
+          address, a coach's or anyone else's. Never a team name, because naming
+          a school names a set of children. Never an invite code. This is a rule
+          written into the app's source code, not a matter of care at the time.
+        </p>
+      </div>
+
+      <p>
+        <strong>Reports are not linked to your account.</strong> The app
+        deliberately does not attach your user id to them, so a crash cannot be
+        traced back to a named coach or a named team. The installation
+        identifier above is not your account, not your name, and not a device
+        identifier used for advertising.
+      </p>
+
+      <p>
+        Crash reports are handled by Firebase Crashlytics, part of the same
+        Google Firebase service described below. Crash reporting is on in every
+        released version of the app and there is no setting to turn it off.
+      </p>
 
       <p>
         The app does not collect location, contacts, health data, device
@@ -165,17 +217,22 @@
       <h2>What the app does not do</h2>
 
       <ul>
-        <li>No analytics or usage tracking software.</li>
+        <li>No analytics. The app does not record which screens you open, which features you use, or how long you spend in it.</li>
         <li>No advertising, and no ad networks.</li>
-        <li>No third-party tracking SDKs.</li>
+        <li>No tracking SDKs, and the app never reads the device's advertising identifier.</li>
         <li>No selling or sharing of data with other companies.</li>
         <li>No tracking of users across other apps or websites.</li>
       </ul>
 
+      <p>
+        Crash and error reports are the one thing the app sends that nobody
+        typed in, and what they contain is described above.
+      </p>
+
       <h2>Where the data is stored</h2>
 
       <p>
-        The app uses Google Firebase, specifically Firebase Authentication and Cloud Firestore, so account and team data is stored on Google Cloud infrastructure. Google acts as a hosting and processing provider for
+        The app uses Google Firebase — specifically Firebase Authentication and Cloud Firestore for account and team data, and Firebase Crashlytics for the crash and error reports described above — so all of it is stored on Google Cloud infrastructure. Google acts as a hosting and processing provider for
         this data; it is not shared with Google for Google's own advertising or
         marketing. You can read how Google handles data in that role at
         <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>
