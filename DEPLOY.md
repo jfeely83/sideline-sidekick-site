@@ -118,22 +118,23 @@ Deploying the rule shows a warning that `www` may not be proxied. It is stale if
 record was just added — choose *Ignore and deploy rule anyway*, not *Create a new proxied
 DNS record*, which would duplicate what is already there.
 
-**Known gap: `http://www.` still returns 522.** The rule's pattern only matches `https`,
-and nothing upgrades `http` → `https` for this hostname first. It does not affect typed
-addresses — browsers try HTTPS — only old `http://www.` links. Two ways to close it, and
-neither has been done:
+3. **Always Use HTTPS** (SSL/TLS → Edge Certificates), enabled 2026-08-12. The rule in
+   step 2 matches `https` only, so before this `http://www.` returned 522 — the apex's own
+   HTTP redirect comes from Pages rather than from a zone setting, which is why it never
+   covered `www`. The scheme upgrade belongs at this layer, not duplicated into the
+   redirect rule.
 
-- **Enable Always Use HTTPS** (SSL/TLS → Edge Certificates). One toggle, zone-wide, and
-  it is where the scheme upgrade belongs. **Check the SSL/TLS encryption mode first:** the
-  dashboard warns that this loops when the origin also forces HTTPS redirects, and Pages
-  does force them. On **Full** it is safe; on **Flexible** it would loop, because the edge
-  would fetch the origin over HTTP and Pages would 301 forever. The apex serving 200 over
-  HTTPS today is evidence the mode is Full, but it was never confirmed.
-- **Or widen the rule** to a custom filter expression on `http.host` rather than a
-  scheme-prefixed wildcard, which keeps the blast radius to `www` alone.
+   The dashboard warns this setting can cause redirect loops when the origin also forces
+   HTTPS redirects, and Pages does force them. It is safe here because the zone is on SSL
+   mode **Full**: the edge fetches the origin over HTTPS, so Pages never issues its own
+   redirect. **On Flexible this would loop forever** — the edge would fetch over HTTP,
+   Pages would 301, and the browser would come round again. The proof it is not Flexible
+   is that `https://sideline-sidekick.com` returned a clean 200 before the toggle was
+   touched; under Flexible it would already have been looping.
 
-Note that the apex already redirects HTTP → HTTPS without Always Use HTTPS. That comes
-from Pages, not from a zone setting, which is exactly why it does not cover `www`.
+All four combinations of scheme and hostname now serve the site — verified across `/`,
+`/faq`, `/support` and `/privacy`. `http://www.…/faq` takes two hops:
+`https://www.…/faq`, then `https://sideline-sidekick.com/faq`.
 
 ## Keeping the FAQ honest
 
