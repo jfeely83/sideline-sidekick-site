@@ -11,6 +11,19 @@
   The old forward-reference under "About student athlete information" is fixed:
   the first mention of the Fan role now defines it, and the later one points
   back at that.
+
+  Revised 2026-08-17 to add "How long data is kept", which was the one thing a
+  reader could not learn from this page: it described deletion in detail and
+  never said what happens if nobody deletes anything. The answer is nothing —
+  team data has no expiry, deliberately, because a staff wants prior seasons.
+  Do not replace that with a fixed retention period without deciding to break
+  that; a criteria-based answer is what the app actually does, and it satisfies
+  GDPR Art. 13(2)(a) on its own.
+
+  The 90-day figure for Crashlytics is Google's schedule rather than ours, and
+  is described as approximate for that reason.
+
+  A Terms of Service now exists at /terms and is linked from the footer.
 -->
 <html lang="en">
 <head>
@@ -48,7 +61,7 @@
     <div class="wrap wrap--narrow">
       <span class="eyebrow">Sideline SideKick Tracker</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 12 August 2026 (updated)</p>
+      <p class="meta">Effective 17 August 2026 (updated)</p>
     </div>
   </div>
 
@@ -79,7 +92,8 @@
 
       <p>
         This policy explains what the app collects, why, and what you can do
-        about it.
+        about it. The terms you agree to when you use the app are set out
+        separately in the <a href="/terms">Terms of Service</a>.
       </p>
 
       <h2>Information the app collects</h2>
@@ -265,6 +279,58 @@
         the cloud.
       </p>
 
+      <h2>How long data is kept</h2>
+
+      <p>
+        <strong>Team data is kept for as long as the team exists, and there is
+        no automatic expiry.</strong> That is deliberate. A coaching staff wants
+        last season's games, and the season before that — a policy that quietly
+        deleted a team's history after some number of months would break the
+        thing the app is for. So nothing is deleted on a timer.
+      </p>
+
+      <p>
+        What that means in practice is that <em>you</em> decide how long
+        information is kept, not us:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Team and roster information</strong> is kept until someone
+          deletes it — a player, a game, or the whole team — using the steps in
+          the next section. Inactive teams are not purged; a team nobody has
+          opened in two years is still there when a coach comes back to it.
+        </li>
+        <li>
+          <strong>Account information</strong> is kept until you delete your
+          account. Dormant accounts are not removed automatically.
+        </li>
+        <li>
+          <strong>Deletion is immediate and permanent.</strong> When you delete
+          a player, a game, a team, or your account, the records are removed
+          from the database outright. They are not hidden, flagged or archived,
+          and there is no way for us to restore them afterwards.
+        </li>
+        <li>
+          <strong>Crash and error reports</strong> are the one exception, and
+          they do expire. Firebase Crashlytics ages them out on its own
+          schedule, typically about 90 days. As described above, they contain no
+          names and are not linked to your account.
+        </li>
+      </ul>
+
+      <p>
+        Deleted data may persist for a short time in the routine backups kept by
+        our cloud hosting provider before those backups age out. It is not
+        accessible through the app once deleted.
+      </p>
+
+      <p>
+        If the app is ever discontinued, notice will be posted on this site and
+        sent to the email addresses on active accounts, with time to export your
+        reports before team data is deleted.
+      </p>
+
       <h2>Deleting data</h2>
 
       <ul>
@@ -355,6 +421,7 @@
       <a href="/faq">FAQ</a>
       <a href="/support">Support</a>
       <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
       <a href="mailto:support@sideline-sidekick.com">Contact</a>
     </nav>
   </div>
