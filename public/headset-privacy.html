@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--
+  Privacy policy for **Sideline Headset**, a second app. Written 2026-08-21,
+  before the first TestFlight upload.
+
+  Why this is its own page rather than a section bolted onto /privacy. The two
+  apps collect materially different things and one of them is about children:
+  SideKick stores a roster of named minors and sends Crashlytics reports;
+  Headset stores no student information at all, has no crash reporting of any
+  kind, and adds a microphone, live voice and local-network access that SideKick
+  has never had. Folding them together would mean every parent reading about
+  their child's roster row has to wade through WebRTC, and every App Review
+  reader of Headset has to wade through student-athlete data that this app never
+  touches. Apple also expects a policy that describes *the app being reviewed*.
+
+  This page must stay in step with three other things. If any one of them
+  changes, change the rest in the same sitting:
+
+    - `Headset/PrivacyInfo.xcprivacy` in the Sideline Headset project
+    - the App Store Connect privacy answers for Sideline Headset
+    - `SUBMISSION.md` §3 in the Sideline Headset project
+
+  Two claims here are load-bearing and are facts about the architecture rather
+  than promises about conduct, which is why they are stated as flatly as they
+  are:
+
+  1. **No audio is recorded or stored anywhere.** There is no recording path in
+     the binary. Voice is carried by WebRTC directly between phones. Verified by
+     reading `Voice/MeshVoice.swift` and `Voice/PeerLink.swift` — no
+     `RTCFileVideoCapturer`, no `AVAudioRecorder`, no file writes, no upload.
+  2. **No server sits in the middle of the audio.** The mesh is peer to peer,
+     which is also why the pilot has no running cost.
+
+  The section on connection-setup messages is the one a careful reader will want
+  and the one that is easy to leave out. ICE candidates *are* IP addresses, they
+  do transit Firestore, and saying so is the difference between a policy that is
+  true and one that is merely not-false. The retention wording there is
+  deliberately honest about the undeleted-leftovers case (SUBMISSION.md §8), and
+  should be tightened to "deleted within N days" only once a Firestore TTL
+  policy on `line/{teamId}/signals` actually exists.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | Sideline Headset</title>
+<meta name="description" content="What Sideline Headset stores and what it does not. Voice is carried directly between phones, is never recorded, and no server is in the middle of it.">
+<meta name="theme-color" content="#0B1624">
+<link rel="canonical" href="https://sideline-sidekick.com/headset-privacy">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow">Sideline Headset</span>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Effective 21 August 2026</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <div class="callout">
+        <p>
+          <strong>The short version.</strong> Sideline Headset is a wireless
+          headset for a football coaching staff. <strong>It never records
+          anything.</strong> Your voice goes straight from your phone to the
+          other coaches' phones, encrypted the whole way, and no server is in
+          the middle of it — there is no recording to keep, to hand over, or to
+          lose. What the app does store is a small list of who is currently on
+          the line: your name, which channel you are on, and whether you are
+          muted. It contains no student or player information of any kind. There
+          are no ads, no analytics, and nothing is ever sold or used to track
+          you.
+        </p>
+      </div>
+
+      <p>
+        Sideline Headset is an iOS app that lets a high school football coaching
+        staff talk to each other during a game — a press-box coordinator and the
+        coaches on the field, on the same line, over their own phones. It is
+        developed and operated by Jeffrey Feely as an individual developer.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>This is a different app from Sideline SideKick Tracker.</strong>
+          You sign in to Headset with the same account, but the two apps store
+          different things, and this policy covers only Headset. The tracker has
+          its own policy at <a href="/privacy">sideline-sidekick.com/privacy</a>.
+          The terms you agree to when you use either app are set out in the
+          <a href="/terms">Terms of Service</a>.
+        </p>
+      </div>
+
+      <h2>What happens to your voice</h2>
+
+      <p>This is the part that matters most, so it is stated plainly.</p>
+
+      <p>
+        <strong>Nothing you say is recorded, stored, or sent to a server.</strong>
+        When you are on the line, your phone opens a direct connection to each
+        of the other coaches' phones and sends audio straight to them. The audio
+        is encrypted end to end using DTLS-SRTP, an internet standard, and it is
+        decoded on the other coach's phone and played. Then it is gone.
+      </p>
+
+      <ul>
+        <li>Nothing is written to your device's storage.</li>
+        <li>Nothing is uploaded anywhere.</li>
+        <li>There is no server in the middle of the audio, so there is no copy of it to keep.</li>
+        <li>There is no feature anywhere in the app that plays a conversation back, because there is nothing to play back.</li>
+      </ul>
+
+      <p>
+        This is a fact about how the app is built rather than a promise about
+        how it is operated. There is no recording capability in the app at all —
+        not one that is switched off, not one reserved for later. If a school,
+        a parent, or a court asked for a recording of what a staff said on the
+        line, there would be nothing to produce.
+      </p>
+
+      <h2>Information the app collects</h2>
+
+      <h3>1. Account information</h3>
+
+      <p>
+        Headset has no sign-up of its own. You sign in with the account you
+        already use for Sideline SideKick Tracker, and the app reads from that
+        account:
+      </p>
+
+      <ul>
+        <li>Email address</li>
+        <li>Display name</li>
+        <li>A user ID assigned by Firebase Authentication</li>
+        <li>Which coaching staffs you belong to, so the app can put you on the right team's line</li>
+      </ul>
+
+      <p>
+        You can sign in with an email and password, with Google, or with Sign in
+        with Apple. Passwords are handled by Firebase Authentication and are
+        never stored by the app or visible to the developer. If you use Sign in
+        with Apple and choose to hide your email address, Apple gives the app a
+        relay address instead and the app is happy with that.
+      </p>
+
+      <p>
+        The app reads your team's name, its colors, and the list of coaches on
+        its staff. It does not read the roster, the playbook, or any game data
+        from the tracker, and it never writes anything back to them.
+      </p>
+
+      <h3>2. Who is on the line</h3>
+
+      <p>
+        While you are on the line, the app keeps one small record about you so
+        the other coaches' phones know you are there and can connect to you. It
+        contains:
+      </p>
+
+      <ul>
+        <li>your display name and your user ID;</li>
+        <li>the role you picked for yourself — head coach, coordinator, position coach;</li>
+        <li>which channel you are on, and whether you are muted;</li>
+        <li>whether you are currently on the line, and the time your phone last checked in, which is how the other coaches can tell a coach who stepped away from one whose phone died;</li>
+        <li>your device model, as a bare string like "iPhone15,2" — no serial number and nothing that identifies your particular phone.</li>
+      </ul>
+
+      <p>
+        This record is visible only to the coaching staff of your own team. It is
+        the whole of what the app stores about you.
+      </p>
+
+      <h3>3. Connection setup messages</h3>
+
+      <p>
+        Two phones cannot start talking directly without first exchanging a short
+        set of technical messages describing how to reach each other. Those
+        messages go through the same Firebase database, addressed from one coach
+        to one other coach, and each is deleted by the receiving phone as soon as
+        it has been read.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>These messages contain IP addresses</strong> — your phone's
+          address on the local network, and the public address your carrier or
+          the stadium's wifi gives you. That is unavoidable: an IP address is
+          literally what one phone needs in order to send audio to another. They
+          are readable only by the coach on your own staff they are addressed to,
+          they are not logged or analysed, and no location is derived from them.
+          They are mentioned here because a policy that described the audio
+          honestly and quietly left this out would not be an honest policy.
+        </p>
+      </div>
+
+      <p>
+        The app also uses a public STUN server run by Google to discover its own
+        public address. That is a single lookup that carries no account
+        information, no name, and nothing about your team.
+      </p>
+
+      <h3>4. That is the whole list</h3>
+
+      <p>The app does not collect:</p>
+
+      <ul>
+        <li>any recording or transcript of anything said on the line;</li>
+        <li>location, in any form, including from the IP addresses described above;</li>
+        <li>contacts, photos, health data, or files;</li>
+        <li>the device's advertising identifier, or any other advertising identifier;</li>
+        <li>usage analytics — which screens you open, which features you use, or how long you spend in the app;</li>
+        <li>crash reports. Unlike the tracker, this app has no crash reporting software of any kind. Its diagnostic log is written on your own phone and stays there; it is never transmitted, and it can only be read by plugging the phone into a computer.</li>
+        <li>any information about student athletes. There is no roster in this app.</li>
+      </ul>
+
+      <h2>Permissions the app asks for</h2>
+
+      <h3>Microphone</h3>
+
+      <p>
+        Required, for the obvious reason: it is a headset. The app asks for it at
+        the moment you first go on the line, not when you open the app, so that
+        the question arrives when it makes sense. If you refuse, the app cannot
+        carry your voice; you will still hear everyone else.
+      </p>
+
+      <h3>Local network</h3>
+
+      <p>
+        Asked for once, and the reason is worth knowing because it looks
+        surprising. When the signal at a field is unusable, a staff's common
+        fallback is for everyone to join one coach's phone hotspot. Every phone
+        is then on the same small network, and the app connects them to each
+        other directly across it — which is faster and more reliable than going
+        out to the internet and back. iOS classifies that as local network
+        access. The app looks for other coaches' phones and nothing else; it does
+        not scan for, catalogue, or report any other device on the network.
+      </p>
+
+      <h3>Background audio</h3>
+
+      <p>
+        The app keeps working with the screen off and the phone in a jacket
+        pocket, which is the only way a headset is any use for three hours. It
+        does not run in the background when you are not on the line.
+      </p>
+
+      <h2>Where the data is stored, and who else is involved</h2>
+
+      <p>
+        The account information and the on-the-line record described above are
+        stored with Google Firebase — Firebase Authentication and Cloud
+        Firestore — on Google Cloud infrastructure. Google acts as a hosting and
+        processing provider; the data is not shared with Google for Google's own
+        advertising or marketing. You can read how Google handles data in that
+        role at
+        <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>
+        and
+        <a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a>.
+      </p>
+
+      <p>
+        Access is limited on the server by Cloud Firestore security rules, not
+        only in the app: only a signed-in member of a team's coaching staff can
+        read or write that team's line, and no coach can alter another coach's
+        record.
+      </p>
+
+      <p>The app includes three pieces of third-party software:</p>
+
+      <ul>
+        <li><strong>Firebase</strong> (Google) — sign-in and the database described above.</li>
+        <li><strong>Google Sign-In</strong> (Google) — only if you choose "Continue with Google".</li>
+        <li><strong>WebRTC</strong> — the open-source library, originally from Google and now an internet standard, that carries and encrypts the voice. It sends audio directly between phones and reports to nobody.</li>
+      </ul>
+
+      <p>
+        There are no advertising networks, no analytics services, no attribution
+        or measurement services, and no crash reporting service.
+      </p>
+
+      <h2>How long data is kept</h2>
+
+      <ul>
+        <li>
+          <strong>Voice is not kept at all</strong>, for the reasons above. There
+          is no retention period because there is nothing retained.
+        </li>
+        <li>
+          <strong>Your on-the-line record</strong> is overwritten each time you
+          join and is left in place when you leave, marked as off the line, so
+          that the staff list shows your whole staff rather than only whoever
+          happens to be on at that moment. It is deleted when you are removed
+          from the team, or when the team is deleted, or on request.
+        </li>
+        <li>
+          <strong>Connection setup messages</strong> are deleted by the receiving
+          phone as soon as they are read, which for a connection that succeeds is
+          a matter of seconds. A message addressed to a coach who never comes on
+          the line is not read by anyone and is currently left in place; it
+          contains an IP address and two user IDs and nothing else, it is
+          readable only by the coach it was addressed to, and automatic expiry
+          for that case is a known improvement that has not yet been made.
+        </li>
+        <li>
+          <strong>Account information</strong> is kept until you delete your
+          account, which is done in Sideline SideKick Tracker and covered by
+          <a href="/privacy">its policy</a>. Deleting your account removes you
+          from Headset at the same time.
+        </li>
+      </ul>
+
+      <h2>Deleting your data</h2>
+
+      <p>
+        Deleting the Headset app from your phone removes the diagnostic log and
+        every trace of the app on the device. It does not remove your
+        on-the-line record, because that lives with your team.
+      </p>
+
+      <p>
+        To remove that record, either have your team's owner remove you from the
+        team in Sideline SideKick Tracker, or delete your account there under
+        <strong>Team → Danger zone → Delete my account</strong>, which removes
+        you from every team you are on and from every line with it.
+      </p>
+
+      <p>
+        If you would rather not do it yourself, or you cannot sign in, email
+        <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
+        from the address on the account and ask for deletion. You can email the
+        same address to ask what information is stored about your account or to
+        have it corrected.
+      </p>
+
+      <h2>Who this app is for</h2>
+
+      <p>
+        Headset is for the adult coaching staff of a team and nobody else. You
+        cannot use it unless someone has already added you to a team's staff in
+        Sideline SideKick Tracker; a parent or player who follows a team in that
+        app's read-only Fan role is refused, by design, and told so.
+      </p>
+
+      <p>
+        There is no way to discover, search for, or contact anyone outside your
+        own staff. There are no profiles, no directory, no friend requests and no
+        public content. A coach can reach exactly the people his school already
+        put on his staff.
+      </p>
+
+      <p>
+        The app is not directed at children under 13, we do not knowingly collect
+        information from anyone under 13, and it holds no information about
+        student athletes at all. If you believe an account was created by someone
+        under 13, email
+        <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
+        and it will be removed.
+      </p>
+
+      <h2>Changes to this policy</h2>
+
+      <p>
+        If this policy changes, the updated version will be posted on this page
+        with a new effective date.
+      </p>
+
+      <h2>Contact</h2>
+
+      <p>
+        Jeffrey Feely<br>
+        <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker · Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -44,7 +44,8 @@ Extensionless paths behave the same locally as in production, so `/faq` and
 | `index.html`   | `/`        | Home page                                    |
 | `faq.html`     | `/faq`     | Coach's FAQ                                  |
 | `support.html` | `/support` | Support                                      |
-| `privacy.html` | `/privacy` | Privacy policy                               |
+| `privacy.html` | `/privacy` | Privacy policy for the tracker                |
+| `headset-privacy.html` | `/headset-privacy` | Privacy policy for Sideline Headset, a separate app |
 | `styles.css`   |            | One stylesheet for every page                |
 | `logo.png`     |            | Header mark and favicon, 96px                |
 | `_redirects`   |            | Sends unknown paths to the splash page       |
@@ -152,3 +153,17 @@ that can drift:
 This site is the one privacy surface not in the app repo, so a code change never prompts
 you to update it. `BACKLOG.md` in the app repo makes the same point about the privacy
 policy.
+
+## Two apps, two policies
+
+`/headset-privacy` was added 2026-08-21 for **Sideline Headset**, which is a second App
+Store app rather than a feature of the tracker. Keep them apart. The two collect
+materially different things — the tracker stores a roster of named minors and sends
+Crashlytics reports; Headset stores no student information, has no crash reporting, and
+adds a microphone, live voice and local-network access the tracker has never had — and
+Apple expects a policy that describes the app under review.
+
+`headset-privacy.html` has to stay in step with three things outside this repo, all in
+the Sideline Headset project on the Desktop: `Headset/PrivacyInfo.xcprivacy`, the App
+Store Connect privacy answers, and `SUBMISSION.md` §3. Its own HTML comment says so, and
+says which of its claims are load-bearing.
