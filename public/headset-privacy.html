@@ -31,6 +31,14 @@
   2. **No server sits in the middle of the audio.** The mesh is peer to peer,
      which is also why the pilot has no running cost.
 
+  Revised later the same day for the **Send diagnostics** button. The claim that
+  the log "can only be read by plugging the phone into a computer" stopped being
+  true the moment that button existed, which is exactly the kind of sentence that
+  quietly rots. What did *not* change is the collection list: the share sheet
+  sends nothing on its own, so there is no new data type, no manifest entry and
+  no App Store privacy label change. That asymmetry is the whole reason the
+  feature was built this way instead of by adding Crashlytics.
+
   The section on connection-setup messages is the one a careful reader will want
   and the one that is easy to leave out. ICE candidates *are* IP addresses, they
   do transit Firestore, and saying so is the difference between a policy that is
@@ -115,7 +123,7 @@
         </p>
       </div>
 
-      <h2>What happens to your voice</h2>
+      <h2 id="voice">What happens to your voice</h2>
 
       <p>This is the part that matters most, so it is stated plainly.</p>
 
@@ -233,7 +241,7 @@
         <li>contacts, photos, health data, or files;</li>
         <li>the device's advertising identifier, or any other advertising identifier;</li>
         <li>usage analytics — which screens you open, which features you use, or how long you spend in the app;</li>
-        <li>crash reports. Unlike the tracker, this app has no crash reporting software of any kind. Its diagnostic log is written on your own phone and stays there; it is never transmitted, and it can only be read by plugging the phone into a computer.</li>
+        <li>crash reports. Unlike the tracker, this app has no crash reporting software of any kind, and nothing is ever sent automatically when something goes wrong. The app keeps a technical log on your own phone; see <a href="#diagnostics">the section below</a>, which describes the one way it can leave your device and why that only happens if you decide it should.</li>
         <li>any information about student athletes. There is no roster in this app.</li>
       </ul>
 
@@ -268,6 +276,38 @@
         pocket, which is the only way a headset is any use for three hours. It
         does not run in the background when you are not on the line.
       </p>
+
+      <h2 id="diagnostics">Sending a diagnostic log, if you choose to</h2>
+
+      <p>
+        The app keeps a technical log on your phone &mdash; a record of when it
+        connected to another coach, when a connection dropped, and what the
+        error was. It is written on your device and stays there.
+      </p>
+
+      <p>
+        <strong>Nothing is ever sent automatically.</strong> There is no crash
+        reporting service in this app and no background upload of any kind. But
+        because the failures a headset actually has are usually not crashes
+        &mdash; a coach simply stops being audible &mdash; there is a
+        <strong>Send diagnostics</strong> button under Settings. Tapping it hands
+        the log to your phone's normal share sheet, and you choose who receives
+        it, the same as sharing a photo. If you never tap it, the log never
+        leaves your phone and is deleted along with the app.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>What is in it, so you can decide.</strong> Times, connection
+          events, error messages, the name of the audio device you were using,
+          your own display name, and the internal account identifiers of the
+          coaches on your own staff &mdash; random strings, not names. It
+          contains <strong>no student or player information</strong>, which this
+          app never holds in the first place; no email address; no location; and
+          no recording or transcript of anything said on the line, because
+          <a href="#voice">none exists</a>.
+        </p>
+      </div>
 
       <h2>Where the data is stored, and who else is involved</h2>
 
