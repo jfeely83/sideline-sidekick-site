@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coaches, fans and settings | Sideline SideKick Tracker</title>
+<meta name="description" content="Roles in Sideline SideKick Tracker: what an owner, a coach and a fan each see, how the invite code works, promoting a parent to coach, and every switch in Team Settings.">
+<meta name="theme-color" content="#0B1624">
+<link rel="canonical" href="https://sideline-sidekick.com/guides/roles">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/guides" aria-current="page">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <p class="crumbs">
+        <a href="/guides">Coach's guide</a>
+        <span aria-hidden="true">›</span>
+        <span>Coaches, fans and settings</span>
+      </p>
+      <span class="eyebrow">Sideline SideKick Tracker</span>
+      <h1>Coaches, fans and settings</h1>
+      <p class="meta">Guide 04 · about 10 minutes</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <nav class="toc" aria-labelledby="toc-h">
+        <h2 id="toc-h">On this page</h2>
+        <ol>
+          <li><a href="#roles">The three roles</a></li>
+          <li><a href="#matrix">Who can see and do what</a></li>
+          <li><a href="#code">The invite code</a></li>
+          <li><a href="#joining">Joining a team</a></li>
+          <li><a href="#promote">Promoting a parent to coach</a></li>
+          <li><a href="#removing">Removing someone</a></li>
+          <li><a href="#settings">Team Settings, switch by switch</a></li>
+          <li><a href="#your-name">Your own name</a></li>
+          <li><a href="#fan-view">What a parent actually sees</a></li>
+          <li><a href="#privacy">Who can see your team's information</a></li>
+          <li><a href="#danger">Leaving, deleting, and the danger zone</a></li>
+        </ol>
+      </nav>
+
+      <p class="lead">
+        There are three roles and no custom permissions to configure. The design
+        assumption is that your formations and play names are the one genuinely
+        proprietary thing in the app, and that the score, the play-by-play and a
+        player's stat line are things a parent has every reason to see.
+      </p>
+
+      <h2 id="roles">The three roles</h2>
+
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Role</th><th>Who it is</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Owner</strong></td>
+              <td>Whoever created the team. One per team.</td>
+              <td>Everything a coach can do, plus team settings, colors, and managing staff.</td>
+            </tr>
+            <tr>
+              <td><strong>Coach</strong></td>
+              <td>Your staff.</td>
+              <td>Run games, enter plays, and edit the roster and playbook.</td>
+            </tr>
+            <tr>
+              <td><strong>Fan</strong></td>
+              <td>Parents and players.</td>
+              <td>The score, the play-by-play and stats. No formation or play names, no key players.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="matrix">Who can see and do what</h2>
+
+      <div class="table-scroll">
+        <table class="ref">
+          <thead>
+            <tr><th></th><th>Owner</th><th>Coach</th><th>Fan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>See the live score and play-by-play</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>See player stats</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Enter plays and run a game</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+            <tr><td>Edit the roster</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+            <tr><td>See formation and play names</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+            <tr><td>See who is marked a key player</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+            <tr><td>Coach's Read and Scouting</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+            <tr><td>The Booth</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">Never</td></tr>
+            <tr><td>Team settings, colors, staff</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Reopen a game marked final</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>These are not just hidden buttons.</strong> The rules on the
+          server enforce the same list. A fan does not merely lack a Playbook
+          row on screen — the playbook is refused to their account outright, so
+          there is nothing to read even for somebody who went looking.
+        </p>
+      </div>
+
+      <p>
+        A coach who opens the Team tab still sees the
+        <span class="ui">Team settings</span> row, with a note saying only the
+        owner can change them. That is on purpose: an explanation a coach can
+        find beats a button that silently does nothing.
+      </p>
+
+      <h2 id="code">The invite code</h2>
+
+      <p>
+        Found at <span class="path"><span class="ui">Team</span> →
+        <span class="ui">Staff and fans</span></span>. Six characters. Anyone
+        who enters it joins your team <strong>as a fan</strong>.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Treat the code as public to your program.</strong> Everyone
+          already on the team can see it and can pass it on — which is the
+          point, because it is the thing that gets forwarded into a team group
+          chat. That is exactly why it hands out the role that gives away
+          nothing a rival staff would want.
+        </p>
+      </div>
+
+      <p>
+        Use <span class="ui">Send invite</span> to share it however you normally
+        reach parents. If it gets somewhere you did not intend, tap
+        <span class="ui">Generate a new code</span>: the old one stops working
+        immediately, everyone on the team sees the new one, and
+        <strong>coaches who already joined are not affected</strong> — nobody
+        gets kicked out.
+      </p>
+
+      <h2 id="joining">Joining a team</h2>
+
+      <ol class="task">
+        <li><p>Download the app and sign in.</p></li>
+        <li>
+          <p>Tap <span class="ui">Join a team with a code</span> — on the
+            welcome screen if you are new, or on the
+            <span class="ui">Team</span> tab if you are already on a team.</p>
+        </li>
+        <li>
+          <p>Enter the six-character code and tap
+            <span class="ui">Look up code</span>. The app shows you which team
+            it belongs to before you commit.</p>
+        </li>
+        <li>
+          <p>Tap <span class="ui">Join</span>. You are in, as a fan. If you are
+            staff, ask the owner to move you up.</p>
+        </li>
+      </ol>
+
+      <p>Joining is always free. Only creating a team needs a subscription.</p>
+
+      <h2 id="promote">Promoting a parent to coach</h2>
+
+      <p>
+        <span class="path"><span class="ui">Team</span> →
+        <span class="ui">Staff and fans</span></span>. Everyone who joined with
+        the code is under <strong>Fans</strong>; your staff is under
+        <strong>Staff</strong>. Change someone's role to
+        <span class="ui">Coach</span> and they move up the screen into the staff
+        list, where you can see it happened.
+      </p>
+
+      <p>
+        The two lists are kept apart deliberately — a staff of four inside a
+        list of ninety parents is not a staff list.
+      </p>
+
+      <h2 id="removing">Removing someone</h2>
+
+      <p>
+        From the same screen, <span class="ui">Remove from team</span>. They
+        lose access. <strong>Plays they entered are kept</strong> — removing a
+        coach in October does not delete September.
+      </p>
+
+      <h2 id="settings">Team Settings, switch by switch</h2>
+
+      <p>
+        Owner only, behind the gear icon on the home screen. Everything here is
+        saved with the <span class="ui">Save</span> button in the corner.
+      </p>
+
+      <h3>Identity</h3>
+
+      <ul>
+        <li><span class="ui">Team name</span></li>
+        <li><span class="ui">Acronym</span> — up to six characters, forced to capitals.</li>
+        <li><span class="ui">Mascot</span> — optional.</li>
+        <li><span class="ui">Chant</span> — optional. Something your program
+          shouts.</li>
+      </ul>
+
+      <p>
+        If you paste something too long, the app does <strong>not</strong>
+        quietly shorten it. It tells you which box is over and by how many
+        characters, and refuses the save until you fix it — losing the end of a
+        team name silently is worse than being told.
+      </p>
+
+      <h3>Look</h3>
+
+      <p>
+        Logo, <span class="ui">Primary color</span> and
+        <span class="ui">Secondary color</span>. These drive the crest and the
+        score bug.
+      </p>
+
+      <h3>Season</h3>
+
+      <p>
+        The season year, and <span class="ui">Quarter length</span> in minutes
+        (anything from 4 to 20). Quarter length is used for clock entry.
+      </p>
+
+      <h3>Coach's Read</h3>
+
+      <p>
+        A switch, <strong>on by default</strong>. Turning it off hides the
+        screen for your whole staff. It does not change who can see your
+        playbook — that is the fan role, and it is unaffected either way. See
+        <a href="/guides/coachs-read">Coach's Read</a>.
+      </p>
+
+      <h3>The Booth</h3>
+
+      <p>
+        A switch, <strong>off by default</strong>. Turning it on adds the shared
+        staff notepad for everyone on the team; leaving it off leaves the
+        feature out of the app entirely for this team. It is coaches only and is
+        never shown to fans. See <a href="/guides/booth">The Booth</a>.
+      </p>
+
+      <h2 id="your-name">Your own name</h2>
+
+      <p>
+        <span class="path"><span class="ui">Team</span> →
+        <span class="ui">Your name</span></span>. This is how you appear in the
+        staff list, and on Booth notes, so your coordinator knows who saw what.
+      </p>
+
+      <p>
+        It belongs to <em>you</em>, not to a team: changing it updates every
+        team you are on at once.
+      </p>
+
+      <p>
+        Also in the <strong>You</strong> section is the rule set you keep stats
+        under. It is a note on which book you are working from — it does not
+        change how the app spots the ball or counts yards.
+      </p>
+
+      <h2 id="fan-view">What a parent actually sees</h2>
+
+      <p>
+        Worth signing in as a fan once, so you can answer the question when a
+        parent asks. They get:
+      </p>
+
+      <ul>
+        <li>The live score, updating as you enter plays.</li>
+        <li>The play-by-play <strong>as plain sentences</strong> rather than
+          coach's shorthand — because the shorthand <em>is</em> the formation
+          and the play call.</li>
+        <li>Player statistics, including their kid's.</li>
+      </ul>
+
+      <p>They do not get formation names, play names, key-player stars, Coach's
+        Read, Scouting, or the Booth.</p>
+
+      <p>
+        A parent who has not confirmed their email address sees a
+        <span class="ui">Confirm your email address</span> banner on the Team
+        tab until they do.
+      </p>
+
+      <h2 id="privacy">Who can see your team's information</h2>
+
+      <p>
+        Your team's information is visible to your team. The developer can also
+        see it to answer a support request, to look into a security problem, or
+        where the law requires — never for anything else, and every time is
+        logged. The same sentence appears in the app, on the Team tab, so nobody
+        has to come to a website to find it.
+      </p>
+
+      <p>The <a href="/privacy">Privacy Policy</a> has the detail.</p>
+
+      <h2 id="danger">Leaving, deleting, and the danger zone</h2>
+
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Action</th><th>Who</th><th>What happens</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="ui">Leave this team</span></td>
+              <td>Anyone but the owner</td>
+              <td>You lose access. <strong>Nothing on the team is deleted.</strong> You need an invite code to get back on.</td>
+            </tr>
+            <tr>
+              <td><span class="ui">Delete this team</span></td>
+              <td>Owner only</td>
+              <td>The team and everything in it. Permanent.</td>
+            </tr>
+            <tr>
+              <td><span class="ui">Delete my account</span></td>
+              <td>You</td>
+              <td>Your account across every team. Permanent.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Simulate no network</h3>
+
+      <p>
+        Under <strong>Developer</strong> on the Team tab. It puts the app into
+        the same offline mode a phone with no signal is in, without you having
+        to turn off WiFi. If your stadium has no service, spend ten minutes with
+        this on before your first Friday — it is the cheapest possible way to
+        find out that everything still works.
+      </p>
+
+      <nav class="pager" aria-label="Guide navigation">
+        <a href="/guides/plays">
+          <span class="dir">Previous guide</span>
+          <span class="name">← Log a play</span>
+        </a>
+        <a class="next" href="/guides/coachs-read">
+          <span class="dir">Next guide</span>
+          <span class="name">Coach's Read →</span>
+        </a>
+      </nav>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker · Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/guides">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

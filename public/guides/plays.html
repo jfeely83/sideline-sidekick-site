@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log a play — every kind | Sideline SideKick Tracker</title>
+<meta name="description" content="How to log runs, passes, punts, kickoffs, returns, touchdowns, penalties and bad snaps in Sideline SideKick Tracker — the game screen, play by play.">
+<meta name="theme-color" content="#0B1624">
+<link rel="canonical" href="https://sideline-sidekick.com/guides/plays">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/guides" aria-current="page">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <p class="crumbs">
+        <a href="/guides">Coach's guide</a>
+        <span aria-hidden="true">›</span>
+        <span>Log a play</span>
+      </p>
+      <span class="eyebrow">Sideline SideKick Tracker</span>
+      <h1>Log a play — every kind</h1>
+      <p class="meta">Guide 03 · about 15 minutes · the one that matters on Friday</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <nav class="toc" aria-labelledby="toc-h">
+        <h2 id="toc-h">On this page</h2>
+        <ol>
+          <li><a href="#screen">The game screen</a></li>
+          <li><a href="#spotting">How the app talks about the field</a></li>
+          <li><a href="#run">A run play</a></li>
+          <li><a href="#pass">A pass play</a></li>
+          <li><a href="#spot-picker">Spot the ball</a></li>
+          <li><a href="#down">Down &amp; distance</a></li>
+          <li><a href="#touchdown">A touchdown, and the try</a></li>
+          <li><a href="#kicking">The kicking game</a>
+            <ol>
+              <li><a href="#punt">Punt</a></li>
+              <li><a href="#kickoff">Kickoff</a></li>
+              <li><a href="#returns">Punt return and kickoff return</a></li>
+            </ol>
+          </li>
+          <li><a href="#penalty">Penalties</a></li>
+          <li><a href="#badsnap">Bad snap</a></li>
+          <li><a href="#drives">Ending a drive</a></li>
+          <li><a href="#other-points">Points that did not come off a play call</a></li>
+          <li><a href="#prompts">The prompts</a></li>
+          <li><a href="#fixing">Undo, edit, delete</a></li>
+          <li><a href="#two-devices">Two coaches, one game</a></li>
+        </ol>
+      </nav>
+
+      <p class="lead">
+        Everything on this page happens on one screen. Learn the run play and
+        the pass play and you have ninety percent of a Friday night; the rest is
+        there when the rest of the game happens.
+      </p>
+
+      <h2 id="screen">The game screen</h2>
+
+      <p>Top to bottom:</p>
+
+      <ul>
+        <li><strong>The score bug</strong> — both crests, both scores, the
+          quarter buttons underneath.</li>
+        <li><strong>The current drive</strong> — which drive it is, how many
+          plays, how many yards, where it started and where the ball is now.</li>
+        <li><strong><span class="ui">ADD PLAY</span></strong> — the big button.
+          This is the one you will hit forty times.</li>
+        <li><strong>Quick actions</strong> — <span class="ui">Kicking Game</span>,
+          <span class="ui">Penalty</span>, <span class="ui">We Scored</span>,
+          <span class="ui">They Scored</span>.</li>
+        <li><strong>SCORING</strong> — every score in the game, and what the try
+          was.</li>
+        <li><strong>PLAY LOG</strong> — everything you have entered, newest
+          first, tappable to edit.</li>
+      </ul>
+
+      <p>
+        If <span class="ui">ADD PLAY</span> is not there, the game is not live
+        yet — see <a href="/guides/games#live">marking it live</a>.
+      </p>
+
+      <h2 id="spotting">How the app talks about the field</h2>
+
+      <p>
+        Every spot is written <strong>from your team's point of view</strong>,
+        in the words a coach already uses:
+      </p>
+
+      <ul>
+        <li><strong>Own 35</strong> — your own 35.</li>
+        <li><strong>50</strong> — midfield.</li>
+        <li><strong>Opponent 42</strong> — their 42.</li>
+        <li><strong>Touchdown!</strong> — the end of the field you are going to.</li>
+      </ul>
+
+      <p>
+        In the tighter rows of the play log these compress to <em>O35</em>,
+        <em>50</em>, <em>P42</em> and <em>TD</em>. It is the same vocabulary
+        everywhere in the app, including the export, so a spreadsheet reads the
+        way the screen did.
+      </p>
+
+      <h2 id="run">A run play</h2>
+
+      <p>The core loop. Five taps and a save.</p>
+
+      <ol class="task">
+        <li>
+          <p>Tap <span class="ui">ADD PLAY</span>.</p>
+        </li>
+        <li>
+          <p><strong>Formation.</strong> Tap the chip. These are in the order
+            you set in <a href="/guides/team#playbook">the playbook</a> — if you
+            are reaching past three rows for your base set, go and reorder
+            them.</p>
+        </li>
+        <li>
+          <p><strong>Play.</strong> Tap the call.</p>
+        </li>
+        <li>
+          <p><strong>Direction.</strong> Left, Middle or Right. This is not part
+            of the play's name — it is chosen here, every time, which is what
+            lets the app tell you later that you run right on 3rd and short.</p>
+        </li>
+        <li>
+          <p><strong>Ball carrier.</strong> The grid opens on
+            <span class="ui">Key players</span> — your starred handful. Switch
+            to <span class="ui">Full roster</span> with the control above the
+            grid the moment a lineman comes up with the ball.</p>
+        </li>
+        <li>
+          <p><strong>Spot the ball.</strong> See <a href="#spot-picker">below</a>
+            — this is the one control worth two minutes of reading.</p>
+        </li>
+        <li>
+          <p>Tap <span class="ui">Save</span>. You are back on the game screen
+            with the drive updated, ready for the next snap.</p>
+        </li>
+      </ol>
+
+      <h2 id="pass">A pass play</h2>
+
+      <p>
+        Identical, except the app asks who threw it and what happened. Choose a
+        play whose <a href="/guides/team#types">type</a> is <em>pass</em> and
+        three extra fields appear.
+      </p>
+
+      <ol class="task">
+        <li>
+          <p><strong>Passer.</strong> The app suggests whoever threw the last
+            pass in this game, so a quarterback who is in for the whole night is
+            already selected. Tapping the suggested player <em>keeps</em> him —
+            you are not deselecting him by confirming him.</p>
+        </li>
+        <li>
+          <p><strong>Result.</strong> Four buttons:</p>
+          <div class="table-scroll">
+            <table class="ref">
+              <thead><tr><th>Result</th><th>Then the app asks</th><th>Spot the ball at</th></tr></thead>
+              <tbody>
+                <tr><td><span class="ui">Complete</span></td><td><strong>Receiver</strong> — required</td><td>Where he was brought down</td></tr>
+                <tr><td><span class="ui">Incomplete</span></td><td><strong>Target</strong> — optional</td><td>Leave it at the line of scrimmage</td></tr>
+                <tr><td><span class="ui">Interception</span></td><td><strong>Target</strong> — optional</td><td>Where the ball changed hands</td></tr>
+                <tr><td><span class="ui">Sack</span></td><td><strong>Target</strong> — optional</td><td>Where he was dropped — behind the line</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+        <li>
+          <p><strong>Naming the target on an incompletion is worth doing.</strong>
+            It costs one tap and it is the only way the app can ever tell you
+            who you are throwing at, as opposed to who is catching.</p>
+        </li>
+      </ol>
+
+      <h2 id="spot-picker">Spot the ball</h2>
+
+      <p>
+        One control, used on nearly every play, and built to be used without
+        looking down for long.
+      </p>
+
+      <ul>
+        <li><strong>Four quick buttons</strong> cover most snaps in one tap. On
+          a normal play they are <span class="ui">No gain</span>,
+          <span class="ui">-5</span>, <span class="ui">+5</span> and
+          <span class="ui">+10</span>.</li>
+        <li><strong>The slider</strong> is coarse. Use it to get near.</li>
+        <li><strong>The − and + steppers</strong> are exact. Use them to land
+          on the yard.</li>
+        <li><strong>The big number</strong> above the strip is the
+          <em>gain</em>, not the yard line — because the gain is what you are
+          actually deciding. It goes red when the play lost yards and green in
+          the end zone.</li>
+        <li><strong>The field strip</strong> underneath draws where the play
+          started and where it ended, with your own end zone on the left, the
+          way you are facing it.</li>
+      </ul>
+
+      <p>
+        The quick buttons change with the job. On a kick they become
+        <span class="ui">25</span> / <span class="ui">30</span> /
+        <span class="ui">35</span> / <span class="ui">40</span> — the distances
+        a high-school kicking game actually produces. On a return they become
+        <span class="ui">No return</span> / <span class="ui">5</span> /
+        <span class="ui">10</span> / <span class="ui">20</span>, and they run
+        the correct direction for whoever is carrying it.
+      </p>
+
+      <p>
+        A touchdown has its own button on the form —
+        <span class="ui">Touchdown!</span> — so you never have to drag the
+        slider to the end of the field.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>After a change of possession the app does not know where the
+          ball is</strong> until you spot it. That is why a new drive opens with
+          <em>"Spot the ball to start drive 7"</em> rather than guessing. Spot
+          the first play of the series and everything downstream — the drive
+          summary, the next play's line of scrimmage, the down — follows on its
+          own.
+        </p>
+      </div>
+
+      <h2 id="down">Down &amp; distance</h2>
+
+      <p>
+        The app tracks it for you and shows it at the top of the Add Play form.
+        Tap it to correct it — after a penalty, a replay of down, or anything
+        the app could not have known.
+      </p>
+
+      <p>
+        Down and distance is <strong>a description, not an umpire</strong>. The
+        app never overrules you with it and never refuses a play because the
+        numbers look wrong. If you set 2nd &amp; 4, that is what the record says.
+      </p>
+
+      <h2 id="touchdown">A touchdown, and the try</h2>
+
+      <ol class="task">
+        <li>
+          <p>Log the play as normal, and either spot the ball in the end zone or
+            tap the <span class="ui">Touchdown!</span> button on the spot
+            picker.</p>
+        </li>
+        <li>
+          <p>Save. The game screen shows a prompt —
+            <em>"Touchdown on play #23 · Add the points and the try"</em>. Tap
+            it.</p>
+        </li>
+        <li>
+          <p><strong>The scoring sheet</strong> opens with the six points
+            already filled in and the scorer suggested from the play. Confirm
+            the scorer, and whether it was a run or a pass.</p>
+        </li>
+        <li>
+          <p><strong>The try.</strong> Three choices —
+            <span class="ui">PAT</span> (1 point),
+            <span class="ui">2 Point</span> (2 points), or
+            <span class="ui">No try</span>. Then how it was attempted
+            (<span class="ui">Run</span>, <span class="ui">Pass</span>,
+            <span class="ui">Kick</span>) and whether it was
+            <span class="ui">Good</span> or <span class="ui">No good</span>.</p>
+        </li>
+      </ol>
+
+      <p>
+        A <strong>field goal</strong> and a <strong>safety</strong> are complete
+        as they stand — the app does not ask for a try on either.
+      </p>
+
+      <h2 id="kicking">The kicking game</h2>
+
+      <p>
+        Punts, kickoffs and both returns go in through one door:
+        <span class="ui">Kicking Game</span> on the game screen. Pick which of
+        the four it was and the form asks for exactly what that play has and
+        nothing it does not.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Two of the four are our kick, and two are our return, and
+          almost everything follows from which.</strong> On a punt or a kickoff
+          the ball is <em>leaving</em>: the drive ends, the yards belong to the
+          kicker. On a return the ball is <em>arriving</em>: this is the first
+          play of a possession, not the last, and the yards belong to the
+          returner.
+        </p>
+      </div>
+
+      <h3 id="punt">Punt</h3>
+
+      <p>
+        A punt is a scrimmage snap, so it carries a down and distance — 4th
+        &amp; 8 — like any other play.
+      </p>
+
+      <ol class="task">
+        <li><p><span class="ui">Punter</span> — who kicked it.</p></li>
+        <li><p><span class="ui">Kick direction</span> — left, middle, right.</p></li>
+        <li>
+          <p><span class="ui">Kick travelled to</span> — where the ball was
+            caught, picked up, downed or went out. This is what measures the
+            punt: from your line of scrimmage to here.</p>
+        </li>
+        <li>
+          <p><span class="ui">Returned to</span> — their new line of scrimmage.
+            <strong>Leave it where it landed if there was no return.</strong>
+            The app carries the landing spot forward for you, so an untouched
+            punt is no extra taps.</p>
+        </li>
+      </ol>
+
+      <p>
+        Punt into the end zone and leave it there and the app reads it as a
+        <strong>touchback</strong>, not a 20-yard return: the ball is placed on
+        the 20 by rule, nobody carried it, and the return is recorded as zero.
+        The punt's <em>net</em> — distance minus return — is what appears in
+        your kicking stats.
+      </p>
+
+      <h3 id="kickoff">Kickoff</h3>
+
+      <p>
+        Same shape as a punt, minus the down and distance: a kickoff is not a
+        down. <span class="ui">Kicker</span>, direction,
+        <span class="ui">Kick travelled to</span>,
+        <span class="ui">Returned to</span>.
+      </p>
+
+      <p>
+        Under the drive rule this app uses, <strong>the kickoff is what closes
+        the drive</strong>. Score, then log the kickoff, and the drive is
+        properly finished. Skip it and you leave a drive hanging open — which is
+        why the game screen offers you the kickoff the moment a score goes in.
+      </p>
+
+      <h3 id="returns">Punt return and kickoff return</h3>
+
+      <p>
+        This is the part worth understanding once, because it is the part most
+        apps get wrong. <strong>Three different spots exist on a return, and
+        they are not the same spot.</strong>
+      </p>
+
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>The app asks</th><th>What it means</th><th>Counted?</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="ui">They punt from</span> / <span class="ui">They kick from</span></td>
+              <td>Their line of scrimmage — where the kick came from.</td>
+              <td class="no">Information only. We do not track an opponent's kick distance.</td>
+            </tr>
+            <tr>
+              <td><span class="ui">Ball punted to</span> / <span class="ui">Ball kicked to</span></td>
+              <td>Where the ball reached you. <strong>The return starts here.</strong></td>
+              <td class="yes">Yes — this is the start of the measurement</td>
+            </tr>
+            <tr>
+              <td><span class="ui">Returned to</span></td>
+              <td>Where your returner was brought down. Your new line of scrimmage.</td>
+              <td class="yes">Yes — this is the end of it</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        So <strong>return yards are measured from the catch, not from their
+        snap.</strong> Measuring from the snap would credit your returner with
+        every yard the other team's leg produced, which is what makes
+        kickoff-return numbers look backwards in a spreadsheet.
+      </p>
+
+      <ol class="task">
+        <li><p><span class="ui">Returner</span> — who brought it back.</p></li>
+        <li><p>Set where the ball reached you.</p></li>
+        <li>
+          <p>Set where it was returned to. The catch spot follows into this box
+            until you move it, so a <strong>fair catch or no return is no extra
+            work</strong> — leave it where you caught it.</p>
+        </li>
+      </ol>
+
+      <h2 id="penalty">Penalties</h2>
+
+      <p>There are two ways in, and they are for two different moments.</p>
+
+      <h3>A flag on a play you are already writing down</h3>
+
+      <p>
+        Inside the Add Play form, under <span class="ui">Flags</span>, turn on
+        <span class="ui">Penalty</span>. Say whether it was
+        <span class="ui">On us</span> or <span class="ui">On them</span>, and
+        whether it was <span class="ui">Accepted</span>. That is it.
+      </p>
+
+      <h3>A flag with no play attached</h3>
+
+      <p>
+        Use the <span class="ui">Penalty</span> quick action on the game screen
+        — a dead-ball foul, a flag between snaps. It asks who it was on, the
+        type, accepted or declined, and where the ball ends up, then
+        <span class="ui">LOG PENALTY</span>.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>Declined flags are kept but not counted.</strong> Anywhere the
+          app reports penalties it says "accepted flags only", because a
+          declined flag had no effect on the game. Flags and bad snaps are also
+          left out of <a href="/guides/coachs-read">Coach's Read</a>, so one
+          holding call does not make your best play look broken.
+        </p>
+      </div>
+
+      <h2 id="badsnap">Bad snap</h2>
+
+      <p>
+        A switch inside the Add Play form, under <span class="ui">Flags</span>.
+        It lives there rather than on the game screen because you only ever know
+        it was a bad snap once you are already writing the play down.
+      </p>
+
+      <h2 id="drives">Ending a drive</h2>
+
+      <p>
+        Most of the time you do not have to do anything: a touchdown, a punt or
+        a kickoff ends the drive on its own. When it ends some other way, use
+        <span class="ui">Drive ended with</span> at the bottom of the Add Play
+        form. It offers <span class="ui">Drive continues</span> and then:
+      </p>
+
+      <ul>
+        <li><span class="ui">Touchdown</span></li>
+        <li><span class="ui">Field Goal</span></li>
+        <li><span class="ui">Punt</span></li>
+        <li><span class="ui">Turnover on Downs</span></li>
+        <li><span class="ui">Interception</span></li>
+        <li><span class="ui">Fumble Lost</span></li>
+        <li><span class="ui">Safety</span></li>
+        <li><span class="ui">End of Half</span></li>
+      </ul>
+
+      <h2 id="other-points">Points that did not come off a play call</h2>
+
+      <p>
+        A punt returned all the way, a pick six, a field goal, anything they
+        scored — none of these have a formation or a direction to answer for.
+        Use the two quick actions:
+      </p>
+
+      <ul>
+        <li><span class="ui">We Scored</span> — opens the scoring sheet on a
+          return touchdown, with the try, and no play call to fill in.</li>
+        <li><span class="ui">They Scored</span> — the same for the other side.
+          Their points, their try.</li>
+      </ul>
+
+      <h2 id="prompts">The prompts</h2>
+
+      <p>
+        The game screen watches what you enter and offers the next thing rather
+        than making you remember it. Each one is a card you tap, and each one
+        appears once and then gets out of the way.
+      </p>
+
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>When</th><th>What it offers</th></tr></thead>
+          <tbody>
+            <tr><td>You logged a touchdown</td><td>Add the points and the try</td></tr>
+            <tr><td>Somebody scored</td><td>Set up the kickoff — or the kickoff return, if it was them</td></tr>
+            <tr><td>It is 4th down</td><td>Is this a punt? Opens the kicking game</td></tr>
+            <tr><td>4th down came up short</td><td>Turnover on downs? Ends the drive</td></tr>
+            <tr><td>They returned one of your plays for a touchdown</td><td>Add their points and the try</td></tr>
+            <tr><td>An accepted flag on the play that ended the drive</td><td>An accepted penalty can keep a drive alive — tap to check</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        That last one is the app being careful rather than clever. Only you know
+        which flag it was and which way it was taken, so it asks instead of
+        deciding.
+      </p>
+
+      <h2 id="fixing">Undo, edit, delete</h2>
+
+      <ul>
+        <li><strong><span class="ui">Undo</span></strong> — on the
+          <em>Last play</em> card. The fastest fix for a play entered by
+          mistake.</li>
+        <li><strong>Edit</strong> — tap any play in the play log. Everything is
+          editable, including the kicking-game fields. Tapping a punt in the log
+          is how you go back and add the punter you skipped.</li>
+        <li><strong>Delete</strong> — from the same place.
+          <strong>Every play after it is renumbered and re-spotted
+          automatically</strong>, so deleting play 12 of 40 does not leave you
+          with a broken game.</li>
+      </ul>
+
+      <h2 id="two-devices">Two coaches, one game</h2>
+
+      <p>
+        Everyone on your staff can enter plays into the same game at the same
+        time, on their own phone or iPad, and everything appears on everyone's
+        screen as it lands. The common setup is an assistant entering plays on an
+        iPad while the coordinator keeps <a href="/guides/coachs-read">Coach's
+        Read</a> open on a phone.
+      </p>
+
+      <p>
+        <strong>None of it waits for a signal.</strong> Plays save on the device
+        the instant you tap Save and sync when the phone finds a bar. If two
+        coaches both enter a play while out of signal and end up with the same
+        play number, the app repairs the numbering when they reconnect — it is
+        fixed when it happens rather than prevented on every tap, because a play
+        clock does not wait for a server.
+      </p>
+
+      <nav class="pager" aria-label="Guide navigation">
+        <a href="/guides/games">
+          <span class="dir">Previous guide</span>
+          <span class="name">← Make a game</span>
+        </a>
+        <a class="next" href="/guides/roles">
+          <span class="dir">Next guide</span>
+          <span class="name">Coaches, fans and settings →</span>
+        </a>
+      </nav>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker · Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/guides">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

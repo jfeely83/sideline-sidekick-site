@@ -531,3 +531,277 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 
 .lead { font-size: 1.12rem; color: var(--slate); }
 .center { text-align: center; }
+
+/* ==========================================================================
+   Guides
+   The coach walkthrough at /guides. Reuses the tokens above; adds only the
+   components a step-by-step page needs and the site did not already have.
+   ========================================================================== */
+
+/* Breadcrumb ------------------------------------------------------------- */
+
+.crumbs {
+  font-size: .9rem;
+  color: var(--muted);
+  margin: 0 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent-ink); text-decoration: underline; }
+.crumbs span[aria-hidden] { opacity: .5; }
+
+/* The topic index on the hub --------------------------------------------- */
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: topic;
+}
+
+.topic { margin: 0; }
+
+.topic a {
+  display: block;
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 24px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.topic a:hover,
+.topic a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.topic .num {
+  counter-increment: topic;
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 12px;
+}
+
+.topic h3 { margin-bottom: .35em; font-size: 1.12rem; }
+.topic p { font-size: .95rem; margin: 0; color: var(--slate); }
+.topic .mins { display: block; margin-top: 12px; font-size: .85rem; color: var(--muted); }
+
+/* On-page contents ------------------------------------------------------- */
+
+.toc {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 0 0 2em;
+  background: var(--wash);
+}
+.toc h2 {
+  font-size: .82rem !important;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 .8em !important;
+}
+.toc ol { margin: 0; padding-left: 1.1em; }
+.toc li { margin-bottom: .35em; font-size: .97rem; }
+
+/* Numbered task steps ---------------------------------------------------- */
+
+.task {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.8em;
+  counter-reset: task;
+}
+
+.task > li {
+  position: relative;
+  padding-left: 46px;
+  margin-bottom: 1.15em;
+}
+
+.task > li::before {
+  counter-increment: task;
+  content: counter(task);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: .88rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.task > li > p:first-child { margin-bottom: .35em; }
+.task ul { margin-top: .5em; }
+
+/* A label exactly as it appears in the app ------------------------------- */
+
+.ui {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  background: #EEF2F6;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: .93em;
+  white-space: nowrap;
+}
+
+.path .ui + .ui { margin-left: 2px; }
+.path { white-space: normal; }
+
+/* Callout variants ------------------------------------------------------- */
+
+.note--warn {
+  background: #FFF6E8;
+  border-color: #E8D6B4;
+}
+.note--warn > p:first-child > strong:first-child { color: #7A4A08; }
+
+.note h3,
+.callout h3 {
+  font-size: .82rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 0 0 .7em;
+  color: var(--muted);
+}
+
+/* Screenshot figures inside a guide -------------------------------------- */
+
+.guide-fig {
+  margin: 0 0 1.8em;
+}
+.guide-fig .frame {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--wash);
+  max-width: 300px;
+}
+.guide-fig--wide .frame { max-width: 100%; border-radius: 12px; }
+.guide-fig figcaption {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-top: 10px;
+  max-width: 60ch;
+}
+
+.fig-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+  margin: 0 0 1.8em;
+}
+.fig-pair .guide-fig { margin: 0; }
+.fig-pair .guide-fig .frame { max-width: 100%; }
+
+/* Reference tables ------------------------------------------------------- */
+
+.table-scroll { overflow-x: auto; margin: 0 0 1.8em; }
+
+.ref {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: .95rem;
+}
+.ref th, .ref td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.ref thead th {
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom-width: 2px;
+}
+.ref tbody tr:last-child td { border-bottom: 0; }
+.ref .yes { color: #1C6B3A; font-weight: 600; }
+.ref .no  { color: var(--muted); }
+
+/* Previous / next -------------------------------------------------------- */
+
+.pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid var(--line);
+}
+.pager a {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+}
+.pager a:hover { border-color: var(--accent); }
+.pager .dir {
+  display: block;
+  font-size: .78rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.pager .name { font-weight: 700; color: var(--ink); }
+.pager .next { text-align: right; }
+
+@media print {
+  .site-header, .site-footer, .pager, .crumbs { display: none; }
+}
+
+/* Sample files shown in a guide ------------------------------------------ */
+
+.prose pre {
+  background: var(--ink);
+  color: #E8EEF4;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 0 0 1.6em;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.prose pre code { font: inherit; color: inherit; background: none; padding: 0; border: 0; }
+
+.prose :not(pre) > code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: #EEF2F6;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: var(--ink);
+}
