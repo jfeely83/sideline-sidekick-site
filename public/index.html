@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  Screenshots         Live in /screenshots/ (log, stats, report, roster +
-                      ipad). To refresh them, replace the PNGs in that folder;
-                      the file names and <img> tags below stay the same.
+  Screenshots         Live in /screenshots/ (game, addplay, coachsread, stats,
+                      booth, roster + ipad), 600px wide, captured 2026-08-26.
+                      Regenerate with `marketing/capture.sh` in the SideKick
+                      repo, then `sips --resampleWidth 600`.
+
+  Guide clips         /guides/video/*.mp4 with matching -poster.png, cut from
+                      one recording by `marketing/clips.sh`.
 
   Beta signup goes through email, not a public TestFlight link. If you later
   want a direct TestFlight invite URL instead, the buttons to change are the
@@ -43,6 +47,7 @@
     <nav class="site-nav" aria-label="Main">
       <a href="/#features">Features</a>
       <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
       <a href="/guides">Guides</a>
       <a href="/faq">FAQ</a>
       <a href="/support">Support</a>
@@ -58,19 +63,19 @@
   <div class="hero on-dark">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">For iPhone &amp; iPad · Now in beta</span>
+        <span class="eyebrow">For iPhone &amp; iPad · Coming to the App Store</span>
         <h1>Every play, logged from the sideline.</h1>
         <p class="lede">
-          Sideline SideKick is a play tracker built for high school football
-          staffs. Log a play in about five taps, watch the stats keep up with
+          Sideline SideKick Tracker is a play tracker built for high school
+          football staffs. Log a play in about five taps, watch the stats keep up with
           the game, and walk off the field with the postgame report already
           written.
         </p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Email to join the beta</a>
+          <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Email for early access</a>
           <a class="btn btn--ghost" href="#how">See how it works</a>
         </div>
-        <p class="btn-note">Free during the beta. No ads, no analytics, no tracking.</p>
+        <p class="btn-note">Joining a team is always free. No ads, no analytics, no tracking.</p>
       </div>
 
       <div aria-hidden="true">
@@ -196,6 +201,45 @@
           </p>
         </div>
 
+        <div class="card">
+          <div class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>What's working, by the second quarter</h3>
+          <p>
+            Coach&rsquo;s Read counts your own calls back at you &mdash; what is
+            moving the ball tonight, what has gone cold, and what a scout in the
+            other press box can already tell about you. Counts, not averages,
+            and nothing ranks until it has been called three times.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><path d="M4 14h3v5H5a1 1 0 0 1-1-1Zm16 0h-3v5h2a1 1 0 0 0 1-1Z"/></svg>
+          </div>
+          <h3>The booth and the sideline, in one place</h3>
+          <p>
+            A shared notepad for your staff during the game. Every note carries a
+            name, a post &mdash; booth or field &mdash; and a quarter, and at the
+            break it files itself into a halftime card. Coaches only; never shown
+            to fans.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="3.5"/><circle cx="18" cy="15" r="3.5"/><path d="M9.5 15h5M7 11.5 8.5 5h3L10 11.5m7 0L15.5 5h-3L14 11.5"/></svg>
+          </div>
+          <h3>Punts, kickoffs and returns, properly</h3>
+          <p>
+            The kicking game gets its own form, because a punt and a punt return
+            are not the same play. Return yards are measured from where the ball
+            came down, not from their snap &mdash; which is the difference
+            between a returner&rsquo;s real number and their punter&rsquo;s leg.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -245,7 +289,8 @@
         <span class="eyebrow">A look at it</span>
         <h2>Big type, high contrast, readable in the sun.</h2>
         <p>
-          On an iPad in landscape it splits in two: entry on the left, the play log on the right.
+          On an iPad it splits in two: entry on the left, the scoring and the
+          whole play log on the right.
         </p>
       </div>
 
@@ -254,16 +299,34 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <img src="/screenshots/log.png" width="393" height="852" alt="The play log during a game, showing the live score, current drive, and recent plays with formation, call, ball carrier and yards gained.">
+              <img src="/screenshots/game.png" width="600" height="1303" loading="lazy" alt="The game screen during a live game: the score bug reading 15 to 10 in the third quarter, the current drive, and a large ADD PLAY button.">
             </div>
-            <figcaption>The play log, at a glance</figcaption>
+            <figcaption>The game, as you work it</figcaption>
           </figure>
         </div>
 
         <div class="shot">
           <figure>
             <div class="frame">
-              <img src="/screenshots/stats.png" width="393" height="852" alt="Live player statistics updating during the game, with per-player rushing, receiving and passing totals.">
+              <img src="/screenshots/addplay.png" width="600" height="1303" loading="lazy" alt="The Add Play form with formation chips, play chips, direction buttons and a grid of players by jersey number.">
+            </div>
+            <figcaption>A play in about five taps</figcaption>
+          </figure>
+        </div>
+
+        <div class="shot">
+          <figure>
+            <div class="frame">
+              <img src="/screenshots/coachsread.png" width="600" height="1303" loading="lazy" alt="Coach&#39;s Read, listing which play calls are working and which have gone cold, with counts beside each.">
+            </div>
+            <figcaption>Coach&rsquo;s Read, by the second quarter</figcaption>
+          </figure>
+        </div>
+
+        <div class="shot">
+          <figure>
+            <div class="frame">
+              <img src="/screenshots/stats.png" width="600" height="1303" loading="lazy" alt="Live player statistics updating during the game, with per-player rushing, receiving and passing totals.">
             </div>
             <figcaption>Stats as the game goes</figcaption>
           </figure>
@@ -272,16 +335,16 @@
         <div class="shot">
           <figure>
             <div class="frame">
-              <img src="/screenshots/report.png" width="393" height="852" alt="The postgame report showing the line score, quarter-by-quarter scoring, and player totals.">
+              <img src="/screenshots/booth.png" width="600" height="1303" loading="lazy" alt="The Booth: a shared feed of staff notes, each showing who wrote it, whether they were in the booth or on the field, and which quarter.">
             </div>
-            <figcaption>The postgame report</figcaption>
+            <figcaption>The Booth, for your staff</figcaption>
           </figure>
         </div>
 
         <div class="shot">
           <figure>
             <div class="frame">
-              <img src="/screenshots/roster.png" width="393" height="852" alt="The team roster, with key players pinned to the top and everyone else listed by number.">
+              <img src="/screenshots/roster.png" width="600" height="1303" loading="lazy" alt="The team roster, with key players pinned to the top and everyone else listed by number.">
             </div>
             <figcaption>Roster and playbook</figcaption>
           </figure>
@@ -289,13 +352,70 @@
 
       </div>
 
-      <!-- iPad landscape: the split-screen dashboard -->
+      <!-- iPad: the split dashboard -->
       <figure class="ipad-shot">
         <div class="ipad-frame">
-          <img src="/screenshots/ipad.png" width="1194" height="834" alt="On an iPad in landscape, the game dashboard splits in two: play entry with the big ADD PLAY button on the left, and the scoring summary and play log on the right.">
+          <img src="/screenshots/ipad.png" width="900" height="1200" loading="lazy" alt="On an iPad the game screen splits in two: play entry with the ADD PLAY button on the left, and the scoring summary with the full play log on the right.">
         </div>
-        <figcaption>On iPad in landscape — entry on the left, the record on the right</figcaption>
+        <figcaption>On iPad &mdash; entry on the left, the whole record on the right</figcaption>
       </figure>
+
+      <p class="center" style="margin-top:28px">
+        <a class="btn btn--ghost" href="/guides#watch">Watch it done &mdash; six short clips</a>
+      </p>
+    </div>
+  </section>
+  <!-- ==================================================================== -->
+  <!-- Guides + pricing                                                     -->
+  <!-- ==================================================================== -->
+  <section class="wash">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Learn it in an evening</span>
+        <h2>Every screen, written down.</h2>
+        <p>
+          Six guides and six short clips: making a team, making a game, logging
+          every kind of play, who sees what, Coach&rsquo;s Read and the Booth.
+        </p>
+      </div>
+      <p class="center">
+        <a class="btn btn--primary" href="/guides">Read the coach&rsquo;s guide</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- What it costs                                                        -->
+  <!-- ==================================================================== -->
+  <section id="pricing">
+    <div class="wrap wrap--narrow">
+      <div class="section-head">
+        <span class="eyebrow">What it costs</span>
+        <h2>One subscription per coach. Everyone else is free.</h2>
+      </div>
+
+      <div class="prose">
+        <div class="callout">
+          <p>
+            <strong>Creating a team needs a coach subscription &mdash; $99 a
+            year</strong>, and it covers your whole account rather than one team,
+            so a varsity and a JV cost the same as one. A free trial is offered
+            if your Apple Account is still eligible for one.
+          </p>
+          <p>
+            <strong>Joining a team with an invite code is always free.</strong>
+            Your assistants, your parents and your players never pay anything.
+          </p>
+        </div>
+
+        <p>
+          Payment is charged to your Apple Account, and you can cancel any time
+          in the Settings app &mdash; you keep access until the end of the period
+          you have paid for. The subscription screen in the app shows the price
+          and terms that apply to you, which is the number to trust if this page
+          is ever out of date.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -328,7 +448,7 @@
         coaches actually using it on a Friday night is what's shaping the thing.
       </p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Email to join the beta</a>
+        <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Email for early access</a>
         <a class="btn btn--ghost" href="/faq">Read the FAQ</a>
       </div>
     </div>
