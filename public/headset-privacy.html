@@ -6,9 +6,9 @@
   Why this is its own page rather than a section bolted onto /privacy. The two
   apps collect materially different things and one of them is about children:
   SideKick stores a roster of named minors and sends Crashlytics reports;
-  Headset stores no student information at all, has no crash reporting of any
-  kind, and adds a microphone, live voice and local-network access that SideKick
-  has never had. Folding them together would mean every parent reading about
+  Headset stores no student information at all, and adds a microphone, live
+  voice and local-network access that SideKick has never had. Folding them
+  together would mean every parent reading about
   their child's roster row has to wade through WebRTC, and every App Review
   reader of Headset has to wade through student-athlete data that this app never
   touches. Apple also expects a policy that describes *the app being reviewed*.
@@ -46,6 +46,22 @@
   deliberately honest about the undeleted-leftovers case (SUBMISSION.md §8), and
   should be tightened to "deleted within N days" only once a Firestore TTL
   policy on `line/{teamId}/signals` actually exists.
+
+  Revised 2026-08-28. The "no crash reporting software of any kind" claims are
+  gone, and §4 "Crash and error reports" is written *ahead* of the SDK on Jeff's
+  instruction. Crash reporting (Crashlytics or an equivalent) is planned, so the
+  section is worded to be true both before and after it lands: "may send", no
+  processor named, no retention figure. Shipping the SDK therefore needs no
+  change to this page.
+
+  It does need two others, in the same sitting: `Headset/PrivacyInfo.xcprivacy`
+  and the App Store Connect privacy answers. Both still declare no collection,
+  which is correct only until the SDK ships. §4 is also the spec the
+  implementation must meet — no user id, no names, no team name, no invite code,
+  and no audio ever — so copy SideKick's `Sideline/Firebase/CrashReporting.swift`,
+  which already enforces exactly that. The doc comment on
+  `Headset/Support/DiagnosticsExport.swift` still cites the deleted claim and
+  should be corrected when that project is next touched.
 -->
 <html lang="en">
 <head>
@@ -103,8 +119,10 @@
           lose. What the app does store is a small list of who is currently on
           the line: your name, which channel you are on, and whether you are
           muted. It contains no student or player information of any kind. There
-          are no ads, no analytics, and nothing is ever sold or used to track
-          you.
+          are no ads, and nothing is ever sold or used to track you across other
+          apps or websites. The one thing it sends that nobody typed in is a
+          crash and error report when something goes wrong; those carry no audio,
+          no names, and are not linked to your account.
         </p>
       </div>
 
@@ -236,7 +254,54 @@
         information, no name, and nothing about your team.
       </p>
 
-      <h3>4. That is the whole list</h3>
+      <h3>4. Crash and error reports</h3>
+
+      <p>
+        When the app crashes, or when something inside it fails quietly &mdash; a
+        connection that drops and will not come back, a channel that will not
+        join &mdash; it may send a diagnostic report so the problem can be found
+        and fixed. Apart from the account and line information above, this is the
+        only thing the app sends that nobody typed in.
+      </p>
+
+      <p>A report contains:</p>
+
+      <ul>
+        <li>what kind of failure it was, and where in the app it happened;</li>
+        <li>the version of the app, the device model, and the iOS version;</li>
+        <li>connection state &mdash; that a link failed, and at which stage;</li>
+        <li>a random identifier for that installation of the app, which is what lets the service count how many devices a problem affects rather than just how many times it happened.</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <strong>Nothing that identifies a person goes into one, and no audio
+          ever does.</strong> Never a recording, never a transcript, never any
+          fragment of what was said on the line &mdash; none of that exists to
+          send, as described above. Never a coach's name or email address. Never
+          a team name. Never an invite code. And never any student or player
+          information, which this app does not hold at all.
+        </p>
+      </div>
+
+      <p>
+        <strong>Reports are not linked to your account.</strong> Your user id is
+        deliberately not attached to them, so a report cannot be traced back to a
+        named coach or a named staff. The installation identifier above is not
+        your account, not your name, and not a device identifier used for
+        advertising.
+      </p>
+
+      <p>
+        These reports are handled by a crash and error reporting service, and
+        they age out on that service's own schedule rather than being kept
+        indefinitely. They are separate from the technical log kept on your own
+        phone, which is never sent anywhere unless you choose to send it &mdash;
+        see <a href="#diagnostics">sending a diagnostic log</a>. They are used only to find and fix faults in the app, never
+        for advertising, marketing, profiling, or building any picture of you.
+      </p>
+
+      <h3>5. That is the whole list</h3>
 
       <p>The app does not collect:</p>
 
@@ -246,7 +311,6 @@
         <li>contacts, photos, health data, or files;</li>
         <li>the device's advertising identifier, or any other advertising identifier;</li>
         <li>usage analytics — which screens you open, which features you use, or how long you spend in the app;</li>
-        <li>crash reports. Unlike the tracker, this app has no crash reporting software of any kind, and nothing is ever sent automatically when something goes wrong. The app keeps a technical log on your own phone; see <a href="#diagnostics">the section below</a>, which describes the one way it can leave your device and why that only happens if you decide it should.</li>
         <li>any information about student athletes. There is no roster in this app.</li>
       </ul>
 
@@ -291,9 +355,9 @@
       </p>
 
       <p>
-        <strong>Nothing is ever sent automatically.</strong> There is no crash
-        reporting service in this app and no background upload of any kind. But
-        because the failures a headset actually has are usually not crashes
+        <strong>This log is separate from the reports above, and it is yours
+        to send or not.</strong> Because the failures a headset actually has are
+        usually not crashes
         &mdash; a coach simply stops being audible &mdash; there is a
         <strong>Send diagnostics</strong> button under Settings. Tapping it hands
         the log to your phone's normal share sheet, and you choose who receives
@@ -335,7 +399,7 @@
         record.
       </p>
 
-      <p>The app includes three pieces of third-party software:</p>
+      <p>The app includes these pieces of third-party software:</p>
 
       <ul>
         <li><strong>Firebase</strong> (Google) — sign-in and the database described above.</li>
@@ -344,8 +408,10 @@
       </ul>
 
       <p>
-        There are no advertising networks, no analytics services, no attribution
-        or measurement services, and no crash reporting service.
+        <strong>A crash and error reporting service</strong> handles the
+        reports described in section 4, and nothing sent to it identifies you. There are no advertising
+        networks, no attribution or measurement services, and nothing that
+        tracks you across other apps or websites.
       </p>
 
       <h2>How long data is kept</h2>
@@ -370,6 +436,12 @@
           contains an IP address and two user IDs and nothing else, it is
           readable only by the coach it was addressed to, and automatic expiry
           for that case is a known improvement that has not yet been made.
+        </li>
+        <li>
+          <strong>Crash and error reports</strong> are aged out by the reporting
+          service on its own schedule rather than kept indefinitely. They carry
+          no audio, no names and no link to your account, so there is nothing in
+          them to trace back to you in the meantime.
         </li>
         <li>
           <strong>Account information</strong> is kept until you delete your
