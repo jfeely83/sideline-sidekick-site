@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+  Added 2026-08-28. The two features a coach has to *see* to want were selling
+  themselves in one line each on the home page. This is the page that shows
+  them.
+
+  Deliberately not a second copy of /guides/booth and /guides/coachs-read. Those
+  are the how-to, written for somebody who already has the app open; this is the
+  why, written for a coach deciding whether the app is worth a Friday. Where the
+  two would overlap, this page states the value and links across rather than
+  restating the procedure.
+
+  The screenshots are the point of the page, so the copy quotes what is actually
+  in them rather than describing them in the abstract:
+
+    - `booth.png` is a Q3 feed against Northgate Prep, four notes from
+      demo.coach posted from the booth. The notes quoted in the prose are the
+      real ones in the image, so a reader comparing the two finds them.
+    - `coachsread.png` is the **Season** view, not This Game — WORKS ALL SEASON
+      over three games, with NEVER WORKED empty and both trend rows saying the
+      3-game window is too short. index.html's alt text for the same file calls
+      it "which play calls are working and which have gone cold", which is the
+      This Game vocabulary and is wrong for this shot; the caption here matches
+      what is on screen. Fix the index alt text when that page is next touched.
+
+  The numbers quoted (3 for 61, 5 for 84, "10 of 34 snaps have no family") are
+  read off the image. If the screenshots are ever regenerated with different
+  seed data, this prose goes stale silently — check it against the new images.
+
+  Both features are staff-only and the owner can switch either off, which is
+  said plainly because a coach evaluating this will ask, and because a fan who
+  wanders onto this page should not think he is missing something he can get.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Booth and Coach's Read | Sideline SideKick Tracker</title>
+<meta name="description" content="Two screens for the staff: The Booth, a shared notepad for what your coaches are seeing, and Coach's Read, your own tendencies computed off the plays you already logged.">
+<meta name="theme-color" content="#0B1624">
+<link rel="canonical" href="https://sideline-sidekick.com/booth">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick Tracker
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/guides">Guides</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow">For the staff</span>
+      <h1>The Booth and Coach&rsquo;s Read</h1>
+      <p class="meta">What your coaches are seeing, and what your own play calls are telling you.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <p class="lead">
+        Two screens that exist because the play log is worth more than a stat
+        sheet. <strong>The Booth</strong> is where your staff writes down what
+        it is seeing. <strong>Coach&rsquo;s Read</strong> is what the plays you
+        have already logged say about your own calling. Neither is ever shown to
+        a fan.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="wash">
+    <div class="wrap wrap--narrow prose">
+
+      <span class="eyebrow">01 &middot; The Booth</span>
+      <h2>Whatever you&rsquo;d shout down to the sideline, typed once</h2>
+
+      <p>
+        Your best assistant is upstairs with the best view in the stadium and no
+        good way to get what he sees to the man calling plays. The Booth is a
+        shared notepad for one game: he types it, the whole staff has it, and
+        nobody had to answer a phone.
+      </p>
+
+      <div class="shots">
+        <div class="shot">
+          <figure>
+            <div class="frame">
+              <img src="/screenshots/booth.png" width="600" height="1303" loading="lazy" alt="The Booth feed during a game against Northgate Prep Falcons in the third quarter, showing four notes from a coach posted from the booth, each tagged with a name, a post and a quarter, above a compose bar reading 'What did you see?'">
+            </div>
+            <figcaption>Four notes, one quarter, every one of them attributed</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <p>
+        That is a real third quarter. The notes in it are the kind that actually
+        change a call &mdash; <em>&ldquo;Box count drops to 6 when we go trips.
+        Numbers say throw it&rdquo;</em>, <em>&ldquo;Corner blitz off the
+        boundary on 3rd and long, twice now&rdquo;</em>, <em>&ldquo;Safety is
+        cheating down on every run look &mdash; play action is there&rdquo;</em>.
+        None of that survives being remembered until halftime.
+      </p>
+
+      <h3>Four things shape it</h3>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Eight seconds</h3>
+          <p>
+            A coach with a thought between plays has to get it down and look up
+            again. One line, a microphone if his hands are full, post.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Who saw it, and from where</h3>
+          <p>
+            Every note carries a name, a post &mdash; booth or field &mdash; and
+            a quarter. An unattributed observation is a rumour. A coordinator
+            deciding whether to slide protection needs to know who saw it.
+          </p>
+        </div>
+        <div class="card">
+          <h3>It works with no signal</h3>
+          <p>
+            Nothing on the screen waits for a server, which is the normal state
+            of a press box on a Friday night.
+          </p>
+        </div>
+        <div class="card">
+          <h3>It is about tonight</h3>
+          <p>
+            Notes belong to one game and stay there. What their safety did on
+            the second series is not next week&rsquo;s problem.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>At halftime it files itself.</strong> The Report tab turns the
+          night&rsquo;s notes into a card you can walk into the locker room with,
+          instead of scrolling a feed in front of forty kids.
+        </p>
+      </div>
+
+      <p>
+        <a href="/guides/booth">The full Booth guide</a> covers the feed filters,
+        the report and the scout tab, and how the owner turns it on.
+      </p>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <span class="eyebrow">02 &middot; Coach&rsquo;s Read</span>
+      <h2>Your own tendencies, off your own plays</h2>
+
+      <p>
+        This is not scouting somebody else. You are already keeping the
+        play-by-play; Coach&rsquo;s Read is what that record is worth once there
+        is enough of it. Which calls are moving the ball, which have stopped,
+        and what an opposing coordinator with a notepad can already tell about
+        you. All of it computed on your own phone from your own game.
+      </p>
+
+      <div class="shots">
+        <div class="shot">
+          <figure>
+            <div class="frame">
+              <img src="/screenshots/coachsread.png" width="600" height="1303" loading="lazy" alt="Coach's Read on the Season tab across three games: a WORKS ALL SEASON list showing Double Wing Wedge 3 for 61, Gun Right Iso 3 for 48 and Gun Right Power 4 for 29; an empty NEVER WORKED list; two trend sections reporting that trends need more games; and a BY PLAY TYPE breakdown of drop back, inside, outside and off tackle.">
+            </div>
+            <figcaption>The season view, three games in</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <p>
+        Three games into a season that reads: Double Wing Wedge is
+        <strong>3 for 61</strong> with a touchdown, Gun Right Iso
+        <strong>3 for 48</strong> with a touchdown, and by play type your drop
+        back game is <strong>5 for 84</strong> while inside runs are
+        <strong>6 for 80</strong> with two scores. Nothing has landed in
+        <span class="ui">NEVER WORKED</span> yet, and both trend sections say
+        plainly that three games is not enough of a window to call a trend.
+      </p>
+
+      <h3>The rules it plays by, printed on the screen</h3>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Rule</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Counts, not averages</strong></td>
+              <td>&ldquo;6 for 41&rdquo; is a thing a coach can hold in his head. &ldquo;6.8 yards per carry&rdquo; is a thing he has to unpack.</td>
+            </tr>
+            <tr>
+              <td><strong>Nothing ranks under 3 calls</strong></td>
+              <td>Two carries for 22 is not a read, it is a long run. A read you cannot trust is worse than none.</td>
+            </tr>
+            <tr>
+              <td><strong>Everything with 3+ calls is listed</strong></td>
+              <td>Once a call clears the floor the screen does not pick favourites.</td>
+            </tr>
+            <tr>
+              <td><strong>Flags and bad snaps excluded</strong></td>
+              <td>One holding call should not make your best play look broken.</td>
+            </tr>
+            <tr>
+              <td><strong>Nothing before about 10 plays</strong></td>
+              <td>The three-call floor, applied to the game as a whole.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        It also tells you what it left out &mdash; the screenshot above says
+        <em>&ldquo;10 of 34 snaps have no family and are left out&rdquo;</em>
+        rather than quietly computing off 24 and letting you think it used
+        everything.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Two doors, and they open differently.</strong> From the game
+          screen it opens on <span class="ui">This Game</span>, because that is
+          the between-series glance it exists for. From the home screen it opens
+          on <span class="ui">Season</span>, because a coach reaching for it on a
+          Tuesday is asking about the year.
+        </p>
+      </div>
+
+      <p>
+        <a href="/guides/coachs-read">The full Coach&rsquo;s Read guide</a> walks
+        through every section, including what an opposing coordinator would see.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="wash">
+    <div class="wrap wrap--narrow prose">
+
+      <h2>Who can see them</h2>
+
+      <p>
+        Both are staff screens. A <a href="/fans">fan</a> &mdash; the role an
+        invite code hands out &mdash; cannot reach either one, and that is
+        enforced by the database rather than by hiding a button. The Booth says
+        so in its own empty state if a fan somehow arrives at it.
+      </p>
+
+      <p>
+        The owner controls both from <span class="ui">Team Settings</span>. The
+        Booth is <strong>off by default</strong> and has to be turned on; off, it
+        is not in the app at all for that team. Coach&rsquo;s Read can be
+        switched off for the whole staff the same way.
+      </p>
+
+      <div class="note">
+        <p>
+          Both are included with a coach subscription. There is nothing extra to
+          buy, and every coach on the staff gets them &mdash; not only the one
+          who paid.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta on-dark">
+    <div class="wrap">
+      <h2>Try it with your staff this season.</h2>
+      <p>
+        The Booth needs two coaches and a phone each. Coach&rsquo;s Read needs
+        about ten plays.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Email for early access</a>
+        <a class="btn btn--ghost" href="/guides">Read the coach&rsquo;s guide</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker &middot; Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/guides">Guides</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

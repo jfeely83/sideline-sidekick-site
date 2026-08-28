@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+  Added 2026-08-28. The site described three roles in /guides/roles and nowhere
+  told a *parent* what he actually gets, which is the page the invite code
+  needs: the code is the thing forwarded into a team group chat, and the person
+  holding it is usually not a coach.
+
+  Every claim here is read off `TeamRole` in `Sideline/Models/CoreTypes.swift`
+  rather than from the guides, because the guides are written for staff and
+  describe the coach's side of each gate. The load-bearing facts:
+
+    - `defaultOnJoin = .fan`, so an invite code grants Fan and nothing else.
+    - `canSeePlaybook` is owner/coach only, and `readsCoachDetail` and
+      `canSeeKeyPlayers` and `canSeeCoachStats` all follow it exactly.
+    - The fan sentence is built by `PlayNarrator` from a different set of facts
+      than the coach line — not the coach line with words removed. There is no
+      branch where a formation or play name can reach it, which is why this page
+      can say so flatly.
+    - The Booth is `isStaff` only and says so in its own empty state.
+
+  NO SCREENSHOTS ON THIS PAGE, deliberately. Every shot in /screenshots is a
+  coach's view — `game.png` has an ADD PLAY button a fan does not have — so
+  captioning one as "what you see" would be false in exactly the way the
+  2026-08-28 privacy pass was cleaning up. Add one here only after capturing the
+  game screen while signed in as a fan.
+
+  The tone is aimed at a parent, not a coach: no scheme vocabulary, and the
+  "what you don't see" section is written as a reason rather than an apology,
+  because the honest version reads better than a hedge.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For parents and players | Sideline SideKick Tracker</title>
+<meta name="description" content="What a parent or player sees in Sideline SideKick Tracker during a game: the score, the play-by-play in plain English, and live player stats. Joining a team is always free.">
+<meta name="theme-color" content="#0B1624">
+<link rel="canonical" href="https://sideline-sidekick.com/fans">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick Tracker
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/guides">Guides</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow">For parents and players</span>
+      <h1>What a fan sees</h1>
+      <p class="meta">Somebody sent you a code. Here is what it gets you, and what it doesn&rsquo;t.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <p class="lead">
+        If a coach forwarded you an invite code, that code makes you a
+        <strong>Fan</strong>. You get the game as it happens &mdash; the score,
+        every play in plain English, and your kid&rsquo;s stat line updating
+        while he plays. You do not get the playbook, and that is on purpose.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Joining a team is always free, forever.</strong> There is no
+          trial and nothing to buy. Only the coach who creates the team pays
+          anything; everyone he lets in joins for nothing.
+        </p>
+      </div>
+
+      <h2>What you get during a game</h2>
+
+      <div class="cards">
+        <div class="card">
+          <h3>The score, live</h3>
+          <p>
+            The score, the quarter and the drive that is happening right now,
+            updating on your phone as the staff logs it on theirs. If you are
+            stuck at work, this is the game.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Every play, in English</h3>
+          <p>
+            The whole play-by-play, written as sentences rather than coaching
+            shorthand &mdash; <em>Trey Halloran ran for 8 yards</em>. You do not
+            need to know what a formation is to follow it.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Player stats, as they happen</h3>
+          <p>
+            Carries, yards, catches, touchdowns, per player, updating through
+            the game. This is the part most parents actually open it for, and
+            it is there the whole time rather than the next morning.
+          </p>
+        </div>
+        <div class="card">
+          <h3>The drives</h3>
+          <p>
+            How each possession went and how it ended. Enough to answer &ldquo;what
+            happened on that last series&rdquo; without anyone having to explain
+            it to you afterwards.
+          </p>
+        </div>
+      </div>
+
+      <h2>Why the play-by-play reads differently for you</h2>
+
+      <p>
+        A coach and a parent are reading the same play for different reasons, so
+        the app writes it two ways. A coach is scanning twenty plays looking for
+        a pattern, so he gets shorthand. You are looking for one kid, so you get
+        a sentence.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>The same play, twice.</strong><br>
+          A coach sees: <span class="ui">Gun Right Power right 22: Trey Halloran &mdash; +8 yds</span><br>
+          You see: <span class="ui">Trey Halloran ran for 8 yards</span>
+        </p>
+      </div>
+
+      <p>
+        The fan version is not the coach version with the words painted out. It
+        is built separately, from a different set of facts, so a formation or a
+        play name has no route into it even by accident.
+      </p>
+
+      <h2>What you don&rsquo;t see, and why</h2>
+
+      <p>
+        A staff&rsquo;s formation names and play calls are the one genuinely
+        proprietary thing in this app. A rival coach who reads them learns the
+        offense &mdash; and an invite code travels, because it gets forwarded
+        into group chats. So the code hands out the least it can while still
+        giving you the game.
+      </p>
+
+      <ul>
+        <li><strong>The playbook.</strong> Formation names and play names, anywhere they would otherwise appear.</li>
+        <li><strong>Key players.</strong> Which handful of players the staff builds around is a read on the team that belongs to the staff. It is also a conversation no coach needs to have about whose kid is not on the list.</li>
+        <li><strong>The coaching stat tables.</strong> Formations, play calls and penalties &mdash; the tables a coordinator uses to judge his own calling. Players and drives, which are the game as it happened, you do get.</li>
+        <li><strong>The Booth and Coach&rsquo;s Read.</strong> The staff&rsquo;s own notes and tendency screens. <a href="/booth">What those are</a>, if you are curious.</li>
+      </ul>
+
+      <div class="note note--warn">
+        <p>
+          <strong>This is enforced on the server, not just hidden on your
+          screen.</strong> The playbook is not sitting in your copy of the app
+          behind a switch &mdash; the database refuses to hand it to a fan
+          account at all. That matters to the coach who gave you the code, and
+          it is the reason he can hand it out freely.
+        </p>
+      </div>
+
+      <h2>Getting in</h2>
+
+      <div class="steps">
+        <div class="step">
+          <h3>1. Get the code</h3>
+          <p>
+            The team&rsquo;s owner has a six-character invite code in the app.
+            Most staffs paste it once into a team group chat.
+          </p>
+        </div>
+        <div class="step">
+          <h3>2. Install and sign in</h3>
+          <p>
+            Download Sideline SideKick Tracker, make an account, and enter the
+            code. You land in the team as a Fan.
+          </p>
+        </div>
+        <div class="step">
+          <h3>3. Open it on Friday</h3>
+          <p>
+            The game shows up on your home screen while it is being played.
+            Nothing to set up, nothing to pay.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>A coach can promote you.</strong> If you are actually on the
+          staff and got in with the code, the owner can move you up to Coach
+          from the staff list, which is what unlocks the playbook and play
+          entry. Everything above Fan is handed out deliberately, one person at
+          a time.
+        </p>
+      </div>
+
+      <h2>About your information</h2>
+
+      <p>
+        Roster information about a minor is visible only to people the
+        team&rsquo;s owner has let in. It is never sold, never shared with other
+        companies, never used for advertising, and never used to track anyone
+        across other apps or websites. There are no ads.
+        The <a href="/privacy">privacy policy</a> is the full version, in plain
+        language.
+      </p>
+
+      <p>
+        If you would rather not be in it at all, tell your coach &mdash; the
+        owner can remove you, and the <a href="/privacy#deleting">deleting data</a>
+        section covers the rest.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="cta on-dark">
+    <div class="wrap">
+      <h2>Got a code? That is the whole setup.</h2>
+      <p>
+        Joining is free and always will be. If your coach hasn&rsquo;t sent one
+        out yet, point him at this page.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/">See what the app does</a>
+        <a class="btn btn--ghost" href="/guides/roles">Read about the roles</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker &middot; Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/guides">Guides</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
