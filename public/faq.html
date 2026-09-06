@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <!--
-  Beta signup goes through email rather than a public TestFlight link.
-  Every answer here has been checked against the app. The three that once
-  carried a CHECK comment were settled on 2026-08-12: pricing, the minimum
-  iOS version, and the spreadsheet export.
+  Both apps are live on the App Store as of 2026-09-04 (Headset 2026-09-03),
+  so the beta/TestFlight answers are gone and "How do I get it?" points at the
+  real listing. Every answer here has been checked against the app. The three
+  that once carried a CHECK comment were settled on 2026-08-12: pricing, the
+  minimum iOS version, and the spreadsheet export.
+
+  The store name is "Sideline SideKick Tracker". A different developer has a
+  live app called plain "Sideline Sidekick", which is why the getting-it answer
+  names the listing and the developer rather than just saying "search for us".
 -->
 <html lang="en">
 <head>
@@ -89,6 +94,12 @@
                 the pricing callout on the home page, its heading and the team
                 guide all go stale together.
 
+                2026-09-05: the beta paragraph is gone. The App Store listing
+                declares In-App Purchases: Yes, "Annual Team Plan $99.00", and
+                the description carries the $99/year-after-14-day-trial line, so
+                "nothing while it's in beta" was flatly false the moment the app
+                went live.
+
                 The eligibility hedge is not lawyer-noise: Apple grants one
                 introductory offer per subscription group for ever, and
                 PurchaseStore.refreshTrialEligibility means the app itself will
@@ -96,10 +107,11 @@
                 must not promise what the buy button then withholds.
               -->
               <p>
-                Nothing while it's in beta &mdash; testers pay nothing, and if that changes testers will hear it from me first, not from an App Store receipt.
+                <strong>The app is a free download.</strong> You need a coach
+                subscription only to <em>create</em> a team.
               </p>
               <p>
-                After that, a coach subscription is <strong>$99 a year</strong>, and the <strong>first two weeks are free</strong> if your Apple Account is still eligible for an introductory offer. One subscription covers your whole account, up to five teams &mdash; a varsity and a JV cost the same as one.
+                A coach subscription is <strong>$99 a year</strong>, and the <strong>first two weeks are free</strong> if your Apple Account is still eligible for an introductory offer. One subscription covers your whole account, up to five teams &mdash; a varsity and a JV cost the same as one.
               </p>
               <p>
                 <strong>Joining a team with an invite code is always free</strong>, so your assistants, your parents and your players never pay anything.
@@ -115,7 +127,7 @@
             payments/DECISIONS.md §1 predicted when the cap replaced unlimited.
 
             The sixth-team route is the existing support address, which is
-            already published on this page for beta access. If a dedicated route
+            published on this page throughout. If a dedicated route
             is ever created, it gets changed here, in the Terms draft at
             drafts/terms-payments-section.html, and in PaywallView.swift, which
             carries the same TODO.
@@ -159,15 +171,23 @@
             <summary>How do I get it?</summary>
             <div class="answer">
               <p>
-                Email
-                <a href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">support@sideline-sidekick.com</a>
-                and say you're interested in the beta, and I'll get you signed
-                up.
+                From the App Store &mdash;
+                <a href="https://apps.apple.com/us/app/sideline-sidekick-tracker/id6798818893" rel="noopener">here is the
+                listing</a>. It's a free download; the subscription only comes
+                into it when you create a team.
               </p>
               <p>
-                It runs through TestFlight, Apple's beta program. You'll get an
-                invite by email, install TestFlight if you don't already have
-                it, and the app installs from there.
+                <strong>If you're searching rather than following that link, search for
+                &ldquo;SideKick Tracker&rdquo;.</strong> There is another
+                developer's app called plain &ldquo;Sideline Sidekick&rdquo; that
+                is not this one. The listing you want is
+                <strong>Sideline SideKick Tracker</strong>, by Jeffrey Feely.
+              </p>
+              <p>
+                <a href="https://apps.apple.com/us/app/sideline-headset/id6803961441" rel="noopener">Sideline Headset</a>,
+                the <a href="/headset">wireless headset app</a> for your staff, is
+                a separate free download and is included with a coach
+                subscription.
               </p>
             </div>
           </details>
@@ -345,7 +365,7 @@
                 Yes. Any game exports to spreadsheets from the game screen, and the whole season exports in one go from the games list. You get five CSV files either way — the play-by-play, players, formations and plays, drives, and scoring — and every one of them carries a Game column, so a season's worth stacks on top of itself and still groups correctly.
               </p>
               <p>
-                The postgame report itself shares as text or PDF. If you need something neither of those covers, say a particular stat service's format, put that in an email. It's exactly the kind of thing the beta is for.
+                The postgame report itself shares as text or PDF. If you need something neither of those covers, say a particular stat service's format, put that in an email. That's exactly the kind of request worth sending &mdash; it's how most of this got built.
               </p>
             </div>
           </details>
@@ -482,7 +502,7 @@
       <p>Ask it directly. It's a short chain of command around here.</p>
       <div class="btn-row">
         <a class="btn btn--primary" href="mailto:support@sideline-sidekick.com">Email support</a>
-        <a class="btn btn--ghost" href="mailto:support@sideline-sidekick.com?subject=Sideline%20SideKick%20beta">Ask about the beta</a>
+        <a class="btn btn--ghost" href="https://apps.apple.com/us/app/sideline-sidekick-tracker/id6798818893" rel="noopener">Get it on the App Store</a>
       </div>
     </div>
   </section>
