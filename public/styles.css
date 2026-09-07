@@ -286,6 +286,12 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   gap: 22px;
 }
 
+/* #features has nine cards, so the auto-fit grid lands on a clean 3x3.
+   #parents has exactly four, which would read as 3 + 1 orphan at the same
+   track size. A wider minimum drops it to a deliberate 2x2 and still
+   collapses to one column on a phone. */
+#parents .cards { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
