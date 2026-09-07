@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+  Added 2026-09-07. This file is load-bearing for more than what it says on it.
+
+  Cloudflare Pages treats a top-level 404.html as the switch that turns OFF its
+  default single-page-application behaviour. With no 404.html in the output
+  directory, Pages "matches all incoming paths to the root (/)", so every
+  unknown URL returned the home page with a 200 — a missing font or stylesheet
+  came back as 200 text/html, the browser discarded it, and no status-code
+  check could see it. With this file present, a miss is a real 404.
+
+  public/_redirects used to hold "/* /index.html 200" and was believed to be
+  what produced that fallback. It was not: the Pages redirect parser rejects
+  that rule outright ("Infinite loop detected in this rule and has been
+  ignored"), so it never applied. The SPA default was doing the work. The rule
+  is gone; this file replaces it. See DEPLOY.md → "Unknown paths".
+
+  Pages walks up the directory tree for the closest 404.html, so this one file
+  covers /guides/ and every other subdirectory. Do not delete it without
+  reading DEPLOY.md first.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Sideline SideKick Tracker</title>
+<meta name="description" content="That page does not exist on sideline-sidekick.com.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C243C">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="preload" href="/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick Tracker
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/guides">Guides</a>
+      <a href="/fans">For parents</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow">404</span>
+      <h1>That page isn't here.</h1>
+      <p class="meta">The link may be old, or the address may have a typo in it.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <p class="lead">
+        Nothing on this site lives more than one click from the home page. The
+        links below cover all of it.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/">Back to the start</a>
+        <a class="btn btn--ghost" href="/guides">Read the guides</a>
+      </div>
+
+      <h2>Looking for something specific?</h2>
+
+      <ul>
+        <li><a href="/guides">Guides</a> &mdash; how to set up a team, run a game, and read the stats afterward.</li>
+        <li><a href="/faq">Coach's FAQ</a> &mdash; cost, devices, what happens with no signal, and who can see your roster.</li>
+        <li><a href="/fans">For parents</a> &mdash; what a parent or player sees when they follow a team.</li>
+        <li><a href="/headset">Sideline Headset</a> &mdash; the staff headset app, free with a coach subscription.</li>
+        <li><a href="/support">Support</a> &mdash; how to reach a person, and how to ask for your account to be deleted.</li>
+        <li><a href="/privacy">Privacy</a> and <a href="/terms">Terms</a>.</li>
+      </ul>
+
+      <div class="callout">
+        <p>
+          If you followed a link on this site to get here, that's a broken link
+          and worth knowing about. Email
+          <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
+          with the address you came from and it will get fixed.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-apps">
+      <a class="footer-app" href="https://apps.apple.com/us/app/sideline-sidekick-tracker/id6798818893" rel="noopener">
+        <img src="/logo.png" width="30" height="30" alt="">
+        <span class="fa-txt">
+          <span class="fa-name">Sideline SideKick Tracker</span>
+          <span class="fa-sub">The play tracker &mdash; on the App Store</span>
+        </span>
+      </a>
+      <a class="footer-app" href="https://apps.apple.com/us/app/sideline-headset/id6803961441" rel="noopener">
+        <img src="/headset-logo.png" width="30" height="30" alt="">
+        <span class="fa-txt">
+          <span class="fa-name">Sideline Headset</span>
+          <span class="fa-sub">Free with a coach subscription</span>
+        </span>
+      </a>
+    </div>
+
+    <p class="colophon">Sideline SideKick Tracker · Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/guides">Guides</a>
+      <a href="/fans">For parents</a>
+      <a href="/headset">Headset</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@sideline-sidekick.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

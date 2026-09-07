@@ -48,23 +48,63 @@ Extensionless paths behave the same locally as in production, so `/faq` and
 | `headset-privacy.html` | `/headset-privacy` | Privacy policy for Sideline Headset, a separate app |
 | `styles.css`   |            | One stylesheet for every page                |
 | `logo.png`     |            | Header mark and favicon, 96px                |
-| `_redirects`   |            | Sends unknown paths to the splash page       |
+| `404.html`     |            | Served with a 404 for anything that does not match a file |
 
 ## Unknown paths
 
-`public/_redirects` contains a single rule:
+Anything that does not match a real file gets `public/404.html` with a **404**. Pages
+walks up the directory tree for the closest `404.html`, so that one file covers
+`/guides/` and every other subdirectory too.
+
+**This changed on 2026-09-07, and the reason it changed is worth reading before
+touching it.** `public/_redirects` used to hold one rule:
 
 ```
 /* /index.html 200
 ```
 
-Anything that does not match a real file serves the splash page with a **200**, which
-is what the site has always done. Real assets still win, so `/faq` serves `faq.html`.
+The rule never did anything. The Pages `_redirects` parser rejects it outright —
+`wrangler pages dev` reports `Infinite loop detected in this rule and has been ignored`
+and `Parsed 0 valid redirect rules`, because rewriting to `/index.html` re-enters the
+same rule once Pages strips `/index`. Put a rule beside it that is *not* a loop
+(`/zzz-probe /faq 200`) and the parser reports `Parsed 1 valid redirect rule` and
+serves it, while the catch-all stays ignored — the parser was fine, the rule was not.
 
-**Do not add `public/404.html`.** Pages serves a `404.html` found in the output
-directory for every unmatched request, and that takes precedence over the rule above —
-adding the file silently turns the splash fallback back into a 404. The old 404 page is
-in git history if it is ever wanted.
+What actually served the home page on every miss was Cloudflare's **default
+single-page-application behaviour**, which is on whenever the output directory has no
+top-level `404.html`: Pages "matches all incoming paths to the root (`/`)". Serving
+`public/` with the `_redirects` file present and with it deleted produced byte-identical
+responses on every path tested. The rule was inert; deleting it changed nothing.
+
+That default was costing two things:
+
+1. **A missing asset failed silently.** A stylesheet, image or font that had not
+   deployed came back `200 text/html`, the browser discarded it, and no status-code
+   check could see the difference. Verified 2026-09-07 against
+   `/fonts/archivo-latin-var.woff2` before it went live.
+2. **Every nonexistent URL was a 200 duplicate of the home page**, so crawlers saw
+   unlimited duplicate content.
+
+Both are gone now: a miss is a real 404, so a status check against the live site means
+something, and `check-site.sh` has a `referenced assets exist` section that catches an
+absent file before it is ever deployed.
+
+`404.html` takes precedence over SPA mode, which is the whole mechanism — so **deleting
+`public/404.html` silently restores the 200-on-everything behaviour.** That is what the
+old note in this file warned against doing, on the mistaken belief that the `_redirects`
+rule was producing the fallback. Keep the file.
+
+### What Pages does natively, with no configuration
+
+None of this needs a `_redirects` file. Verified 2026-09-07 on the live site and against
+`wrangler pages dev public`:
+
+- **Clean URLs.** `/faq`, `/support`, `/guides/plays` serve `faq.html`, `support.html`,
+  `guides/plays.html`. All 16 pages verified byte-identical to the file on disk.
+- **Canonical redirects, 308.** `/faq.html` → `/faq`, `/index.html` → `/`,
+  `/guides/index.html` → `/guides/`, `/guides` → `/guides/`.
+- **Assets win over everything.** All 39 files under `public/` — css, png, woff2, mp4,
+  in subdirectories included — serve byte-identical with the right `Content-Type`.
 
 ## Colors
 

@@ -57,6 +57,33 @@ print(f"  {broken} broken" if broken else "  all internal links resolve")
 sys.exit(1 if broken else 0)
 PY
 
+say "── referenced assets exist ──"
+python3 - <<'PY' || FAIL=1
+import glob, re, os, sys
+# The link check above covers href=, so <a> and <link rel=preload>. It does not
+# cover src=, poster=, or url() inside the stylesheet -- and url() is where the
+# font is referenced. An asset referenced but absent used to fail silently:
+# with no 404.html, Pages' SPA fallback answered every miss with the home page
+# at 200, so a status-code check downstream could not see it. There is a real
+# 404 now, but a missing file is still cheaper to catch here than in a browser.
+missing = 0
+refs = []
+for f in sorted(glob.glob("public/**/*.html", recursive=True)):
+    s = open(f).read()
+    for m in re.findall(r'(?:src|poster)="(/[^"]*)"', s):
+        refs.append((f, m))
+for f in sorted(glob.glob("public/**/*.css", recursive=True)):
+    s = open(f).read()
+    for m in re.findall(r"""url\(\s*['"]?(/[^)'"]*)""", s):
+        refs.append((f, m))
+for f, r in refs:
+    path = "public" + r.split("#")[0].split("?")[0]
+    if not os.path.isfile(path):
+        print(f"  MISSING {f.replace('public/','')} -> {r}"); missing += 1
+print(f"  {missing} missing" if missing else f"  all {len(refs)} referenced assets exist on disk")
+sys.exit(1 if missing else 0)
+PY
+
 say "── stale prices in VISIBLE copy ──"
 python3 - <<'PY' || FAIL=1
 import glob, re, sys
