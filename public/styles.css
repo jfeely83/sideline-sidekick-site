@@ -4,6 +4,33 @@
    one-line change per token.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Type
+   One variable file carries both voices on this site. Archivo is a grotesque
+   in the American signage lineage — field-house lettering, program covers,
+   scoreboard placards — and it ships a width axis as well as a weight axis.
+
+   So the condensed "agate" voice used for eyebrows, labels, table heads and
+   step numbers is not a second typeface. It is this same face pulled narrow,
+   which is how football statistics have always been set: a newspaper box
+   score is condensed agate type. The label voice and the headline voice are
+   therefore related by construction, and cost one request between them.
+
+   Latin subset only. No page on this site sets non-latin text.
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-var.woff2") format("woff2");
+  font-weight: 400 700;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212,
+                 U+FEFF, U+FFFD;
+}
+
 :root {
   /* Brand
      Sampled from the SideKick logo (SideKick-1024/sidekick-1024-lockup).
@@ -13,6 +40,7 @@
   --slate:      #3A5068;   /* body text on light */
   --muted:      #5E7085;   /* captions, meta */
   --line:       #DCE3EA;   /* hairlines */
+  --line-soft:  #EFF3F6;   /* interior rules inside a card */
   --wash:       #FAF6EC;   /* tinted section background — logo cream */
   --paper:      #FFFFFF;
 
@@ -21,8 +49,8 @@
   --accent-soft:#FAEDE8;   /* accent tint background */
 
   /* Type */
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-          Arial, sans-serif;
+  --sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
   /* Space */
@@ -70,8 +98,38 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
-h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); letter-spacing: -0.03em; }
-h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); }
+/* Headlines sit slightly narrow. At 92% width the grotesque picks up the
+   density of signage lettering without reading as a condensed face, and it
+   buys about a character and a half per line at the same size. */
+h1 {
+  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  letter-spacing: -0.03em;
+  font-stretch: 92%;
+}
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); font-stretch: 92%; }
+
+/* The agate voice. Every small uppercase label on the site routes through
+   here so they stay identical: eyebrows, stat labels, table heads, step
+   numbers, breadcrumb directions. */
+.eyebrow,
+.step::before,
+.ref thead th,
+.pager .dir,
+.toc h2,
+.note h3,
+.callout h3,
+.topic .num {
+  font-family: var(--sans);
+  font-stretch: 74%;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Numbers align in columns wherever the page is reporting a figure. */
+.stat b,
+.hero-log,
+.ref td,
+.task > li::before { font-variant-numeric: tabular-nums; }
 h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
 
 p { margin: 0 0 1.1em; }
@@ -120,15 +178,35 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 
 .eyebrow {
   display: block;
-  font-size: .78rem;
+  font-size: .82rem;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .11em;
   text-transform: uppercase;
   color: var(--accent-ink);
   margin-bottom: .75em;
 }
 
-.wash { background: var(--wash); border-block: 1px solid var(--line); }
+.wash {
+  background: var(--wash);
+  border-block: 1px solid var(--line);
+  position: relative;
+}
+
+.wash::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 9px;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-image:
+    repeating-linear-gradient(to right, rgba(180,60,36,.42) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to right, rgba(12,36,60,.15) 0 1px, transparent 1px 12px);
+  background-size: 100% 9px, 100% 4px;
+}
 
 /* --------------------------------------------------------------------------
    Header
@@ -224,12 +302,39 @@ section { padding-block: clamp(56px, 8vw, 96px); }
    -------------------------------------------------------------------------- */
 
 .hero {
-  background:
-    radial-gradient(90rem 40rem at 78% -12%, #1D3A5C 0%, transparent 62%),
-    var(--ink);
+  background: var(--ink);
   color: #fff;
   padding-block: clamp(60px, 10vw, 108px);
-  border-bottom: 4px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   The yard-line rule
+   A sideline is marked in measured ticks: a short one every yard, a taller
+   one every fifth. Both layers are repeating gradients, so this ships as no
+   asset at all and scales to any width.
+
+   It earns its place by being structural rather than decorative — it marks
+   where one part of the page ends and the next begins — so it appears in
+   exactly two places: the foot of the hero, and the head of each tinted
+   section. Never inside content.
+   -------------------------------------------------------------------------- */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-image:
+    repeating-linear-gradient(to right, rgba(255,255,255,.30) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to right, rgba(255,255,255,.13) 0 1px, transparent 1px 12px);
+  background-size: 100% 10px, 100% 5px;
 }
 
 .hero h1 { color: #fff; max-width: 15ch; }
@@ -254,6 +359,56 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   .hero-grid { grid-template-columns: 1fr; }
 }
 
+/* The play log in the hero.
+   Decorative — the real screenshots are further down — but it is the first
+   thing anyone sees, so it is set as the artifact it depicts rather than as a
+   generic card: a stat sheet, with tabular figures so the yardage column
+   reads straight down the way it does on paper. */
+.hero-log {
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 24px 50px -24px rgba(0,0,0,.6);
+}
+
+.hero-log .log-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+.hero-log .log-head strong {
+  color: var(--ink);
+  letter-spacing: -.02em;
+  font-stretch: 92%;
+  font-size: 1.02rem;
+}
+.hero-log .log-head span {
+  color: var(--muted);
+  font-size: .76rem;
+  font-stretch: 74%;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-log table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .86rem;
+  color: var(--slate);
+}
+.hero-log td { padding: 9px 0; }
+.hero-log tr + tr td { border-top: 1px solid var(--line-soft); }
+.hero-log .n { color: var(--accent-ink); font-weight: 700; width: 2.2rem; }
+.hero-log .call { color: var(--ink); font-weight: 600; }
+.hero-log .res { text-align: right; white-space: nowrap; }
+.hero-log .res strong { color: var(--ink); }
+
 /* Stat strip under the hero */
 .stat-strip {
   display: grid;
@@ -274,7 +429,11 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
-.stat span { font-size: .93rem; color: var(--muted); }
+.stat span {
+  font-size: .9rem;
+  color: var(--muted);
+  font-stretch: 84%;
+}
 
 /* --------------------------------------------------------------------------
    Feature cards
@@ -327,11 +486,12 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   counter-increment: step;
   content: counter(step);
   display: block;
-  font-size: .8rem;
-  font-weight: 800;
-  letter-spacing: .1em;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1;
   color: var(--accent-ink);
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 .step h3 { margin-bottom: .4em; }
 .step p { font-size: .97rem; }
@@ -420,6 +580,26 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   background: var(--wash);
   border-bottom: 1px solid var(--line);
   padding-block: clamp(40px, 6vw, 64px);
+  position: relative;
+}
+
+/* An interior page's head is its hero, so it carries the rule at its foot
+   the way the home page's hero does. Without this the signature would live
+   on one page out of sixteen. */
+.page-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 9px;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-image:
+    repeating-linear-gradient(to right, rgba(180,60,36,.42) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to right, rgba(12,36,60,.15) 0 1px, transparent 1px 12px);
+  background-size: 100% 9px, 100% 4px;
 }
 .page-head h1 { margin-bottom: .3em; }
 .page-head .meta { color: var(--muted); font-size: .95rem; margin: 0; }
@@ -502,6 +682,25 @@ section { padding-block: clamp(56px, 8vw, 96px); }
   background: var(--ink);
   color: #fff;
   text-align: center;
+  position: relative;
+}
+
+/* The closing band gets the rule at its head, so the page is bracketed
+   between two marked sidelines rather than carrying the device once. */
+.cta::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 10px;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-image:
+    repeating-linear-gradient(to right, rgba(255,255,255,.28) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(to right, rgba(255,255,255,.12) 0 1px, transparent 1px 12px);
+  background-size: 100% 10px, 100% 5px;
 }
 .cta h2 { color: #fff; }
 .cta p { color: rgba(255,255,255,.8); max-width: 54ch; margin-inline: auto; }
@@ -679,9 +878,7 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 .topic .num {
   counter-increment: topic;
   display: inline-block;
-  font-family: var(--mono);
   font-size: .78rem;
-  font-weight: 700;
   letter-spacing: .08em;
   color: var(--accent-ink);
   background: var(--accent-soft);

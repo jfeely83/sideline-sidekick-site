@@ -34,9 +34,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sideline SideKick | Play tracking for high school football staffs</title>
 <meta name="description" content="An iOS app for high school football coaching staffs. Log plays from the sideline in about five taps, get live stats during the game, and a postgame report before you leave the field. Works with no signal.">
-<meta name="theme-color" content="#0B1624">
+<meta name="theme-color" content="#0C243C">
 <link rel="canonical" href="https://sideline-sidekick.com/">
 <link rel="icon" type="image/png" href="/logo.png">
+<link rel="preload" href="/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 
 <meta property="og:type" content="website">
@@ -94,32 +95,16 @@
 
       <div aria-hidden="true">
         <!-- Stylised play log. Decorative. Real screenshots live further down. -->
-        <div style="background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 24px 50px -24px rgba(0,0,0,.6);">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #DFE5EB;padding-bottom:12px;margin-bottom:14px;">
-            <strong style="color:#0B1624;letter-spacing:-.02em;">2nd Quarter</strong>
-            <span style="color:#6B7C90;font-size:.85rem;">Drive 4 · 1st &amp; 10</span>
+        <div class="hero-log">
+          <div class="log-head">
+            <strong>2nd Quarter</strong>
+            <span>Drive 4 &middot; 1st &amp; 10</span>
           </div>
-          <table style="width:100%;border-collapse:collapse;font-size:.86rem;color:#43566C;">
-            <tr style="border-bottom:1px solid #F0F3F6;">
-              <td style="padding:9px 0;color:#A84013;font-weight:700;width:2.2rem;">14</td>
-              <td style="padding:9px 0;color:#0B1624;font-weight:600;">Trips Rt · Power</td>
-              <td style="padding:9px 0;text-align:right;">#22 · <strong style="color:#0B1624;">+7</strong></td>
-            </tr>
-            <tr style="border-bottom:1px solid #F0F3F6;">
-              <td style="padding:9px 0;color:#A84013;font-weight:700;">13</td>
-              <td style="padding:9px 0;color:#0B1624;font-weight:600;">Ace · Zone Rt</td>
-              <td style="padding:9px 0;text-align:right;">#33 · <strong style="color:#0B1624;">+3</strong></td>
-            </tr>
-            <tr style="border-bottom:1px solid #F0F3F6;">
-              <td style="padding:9px 0;color:#A84013;font-weight:700;">12</td>
-              <td style="padding:9px 0;color:#0B1624;font-weight:600;">Trey · Sprint Out</td>
-              <td style="padding:9px 0;text-align:right;">Inc.</td>
-            </tr>
-            <tr>
-              <td style="padding:9px 0;color:#A84013;font-weight:700;">11</td>
-              <td style="padding:9px 0;color:#0B1624;font-weight:600;">I Right · Iso</td>
-              <td style="padding:9px 0;text-align:right;">#22 · <strong style="color:#0B1624;">+4</strong></td>
-            </tr>
+          <table>
+            <tr><td class="n">14</td><td class="call">Trips Rt &middot; Power</td><td class="res">#22 &middot; <strong>+7</strong></td></tr>
+            <tr><td class="n">13</td><td class="call">Ace &middot; Zone Rt</td><td class="res">#33 &middot; <strong>+3</strong></td></tr>
+            <tr><td class="n">12</td><td class="call">Trey &middot; Sprint Out</td><td class="res">Inc.</td></tr>
+            <tr><td class="n">11</td><td class="call">I Right &middot; Iso</td><td class="res">#22 &middot; <strong>+4</strong></td></tr>
           </table>
         </div>
       </div>
