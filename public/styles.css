@@ -424,6 +424,13 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 .page-head h1 { margin-bottom: .3em; }
 .page-head .meta { color: var(--muted); font-size: .95rem; margin: 0; }
 
+/* The Headset page head carries its own app icon. The icon's ground is the
+   same cream as `--wash`, so without the hairline it reads as floating
+   artwork rather than as an app icon — which is the whole point of it. */
+.head-with-icon { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.head-with-icon > div { min-width: 0; flex: 1 1 260px; }
+.app-icon--lg { width: 76px; height: 76px; border: 1px solid var(--line); }
+
 .callout {
   background: var(--accent-soft);
   border-left: 4px solid var(--accent);
@@ -500,6 +507,51 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 .cta p { color: rgba(255,255,255,.8); max-width: 54ch; margin-inline: auto; }
 .cta .btn-row { justify-content: center; margin-top: 28px; }
 
+/* Both apps, side by side, at the point somebody decides to download.
+   This is the only place the Headset icon appears outside /headset, and
+   the reason the section carries icons at all: the two apps are a pair
+   and one of them is free with the other's subscription.
+   `.cta p` centres and clamps to 54ch; these override it explicitly rather
+   than relying on source order, since both selectors are (0,1,1). */
+.apps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+  gap: 16px;
+  margin-top: 30px;
+  text-align: left;
+}
+.app {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.05);
+}
+.app-icon { flex: none; border-radius: 22%; display: block; }
+.app h3 { color: #fff; font-size: 1.06rem; margin: 0 0 5px; letter-spacing: -.01em; }
+.cta .app p {
+  color: rgba(255,255,255,.74);
+  font-size: .92rem;
+  line-height: 1.5;
+  max-width: none;
+  margin: 0 0 11px;
+  margin-inline: 0;
+  text-align: left;
+}
+.app .free { color: #F2C4B4; font-weight: 700; }
+.app .store {
+  color: #fff;
+  font-weight: 650;
+  font-size: .92rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.42);
+  padding-bottom: 1px;
+}
+.app .store:hover { border-bottom-color: #fff; }
+.app .store:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
@@ -524,6 +576,40 @@ section { padding-block: clamp(56px, 8vw, 96px); }
 
 .site-footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .site-footer .colophon { margin: 0; }
+
+/* Both apps, on every page.
+   There is another developer's app on the App Store called plain "Sideline
+   Sidekick", so a visitor who lands deep in the guides should still be able to
+   see which two apps this site is about and go straight to the right listings.
+   Takes its own full-width row above the colophon. */
+.footer-apps {
+  flex: 1 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.footer-app { display: flex; align-items: center; gap: 11px; }
+.footer-app img { border-radius: 22%; flex: none; display: block; }
+.footer-app .fa-txt { display: block; }
+.footer-app .fa-name {
+  display: block; color: #fff; font-weight: 650;
+  font-size: .95rem; line-height: 1.25;
+}
+.footer-app .fa-sub {
+  display: block; color: rgba(255,255,255,.6);
+  font-size: .82rem; line-height: 1.3;
+}
+/* `.site-footer a:hover` underlines the whole anchor; keep it on the name. */
+.site-footer .footer-app:hover { text-decoration: none; }
+.site-footer .footer-app:hover .fa-name { text-decoration: underline; }
+
+/* An app icon set beside a heading that names that app. */
+.h2-icon {
+  width: 30px; height: 30px; border-radius: 22%;
+  vertical-align: -7px; margin-right: 10px; border: 1px solid var(--line);
+}
 
 /* --------------------------------------------------------------------------
    Utilities
