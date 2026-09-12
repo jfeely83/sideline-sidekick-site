@@ -35,6 +35,15 @@
   The same absolute had survived on /index and /faq for sixteen days after this
   page was corrected on the 12th. If a collection claim changes here, grep the
   whole site the same day — that miss is why the sweep now happens.
+
+  Revised 2026-09-12 for game alerts (push notifications), which 1.17 adds.
+  A notification token is the first identifier the app collects that nobody
+  typed in and that is linked to an account, so it gets its own numbered
+  section, its own retention bullet, a line in "Children", and the two
+  sentences that said crash reports were "the only" untyped thing are
+  narrowed. Written BEFORE the build that stores a token ships, on purpose:
+  the policy has to be true on the day the first token lands. /index, /fans
+  and /faq were grepped the same day and make no claim this contradicts.
 -->
 <html lang="en">
 <head>
@@ -77,7 +86,7 @@
     <div class="wrap wrap--narrow">
       <span class="eyebrow">Sideline SideKick Tracker</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 28 August 2026 (updated)</p>
+      <p class="meta">Effective 12 September 2026 (updated)</p>
     </div>
   </div>
 
@@ -168,8 +177,8 @@
         When the app crashes, or when something inside it fails quietly — a game
         that will not open, a save the server refuses, a roster import that comes
         back empty — the app sends a report so the problem can be found and
-        fixed. This is the only information the app collects that nobody typed
-        in.
+        fixed. Apart from the notification token described in section 4, this
+        is the only information the app collects that nobody typed in.
       </p>
 
       <p>A report contains:</p>
@@ -211,6 +220,53 @@
         Both are handled by Firebase Crashlytics, part of the same Google
         Firebase service described below. Reporting is on in every released
         version of the app and there is no setting to turn it off.
+      </p>
+
+      <h3>4. Game alerts (push notifications)</h3>
+
+      <p>
+        The app can send game alerts to your phone: that a game has started,
+        the score at the end of a quarter, each scoring play, and the final
+        score. This is optional. iOS asks your permission the first time you
+        open a team, and you can say no; nothing else in the app changes if you
+        do.
+      </p>
+
+      <p>
+        If you allow it, the app stores a <strong>notification token</strong>
+        for that device with your account. A token is a long random string
+        issued by Apple and Google's messaging service that lets a message be
+        delivered to one phone. It is not your phone number, not an advertising
+        identifier, and it identifies a device only for the purpose of
+        delivering these alerts. It is stored with your account and is readable
+        by nobody else on the team.
+      </p>
+
+      <p>
+        Alongside it, the app stores which alerts you want from each team — four
+        on/off switches. You can change them on the team's Alerts screen, and
+        you can turn alerts off entirely in iOS Settings at any time.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>What an alert says.</strong> A scoring-play alert carries the
+          same sentence the app already shows on the play-by-play — for example
+          "SST Touchdown, James Aikey 12-yd pass from Dillon O'Brien" — followed
+          by the score. That sentence names the player who scored, and it is
+          delivered through Apple's notification service to every member of the
+          team who has that alert switched on. It is the same information every
+          member of the team can already see in the app; it is not published
+          anywhere else. A team owner can switch alerts off for the whole team,
+          and a coach can mute them for a single game.
+        </p>
+      </div>
+
+      <p>
+        The token is removed when you sign out on that device, and when your
+        account is deleted. The alerts themselves are sent by a server-side
+        function that reads only the game's status and its scores; it never
+        reads the playbook or the individual plays.
       </p>
 
       <p>
@@ -362,14 +418,15 @@
       </ul>
 
       <p>
-        Crash and error reports are the one thing the app sends that nobody
-        typed in, and what they contain is described above.
+        Crash and error reports, and the notification token if you turn game
+        alerts on, are the two things the app sends that nobody typed in, and
+        what each contains is described above.
       </p>
 
       <h2>Where the data is stored</h2>
 
       <p>
-        The app uses Google Firebase — specifically Firebase Authentication and Cloud Firestore for account and team data, and Firebase Crashlytics for the crash and error reports described above — so all of it is stored on Google Cloud infrastructure. Google acts as a hosting and processing provider for
+        The app uses Google Firebase — specifically Firebase Authentication and Cloud Firestore for account and team data, Firebase Cloud Messaging to deliver game alerts, and Firebase Crashlytics for the crash and error reports described above — so all of it is stored on Google Cloud infrastructure. Google acts as a hosting and processing provider for
         this data; it is not shared with Google for Google's own advertising or
         marketing. You can read how Google handles data in that role at
         <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>
@@ -427,6 +484,12 @@
           and there is no way for us to restore them afterwards.
         </li>
         <li>
+          <strong>Notification tokens</strong> are kept while you stay signed in
+          on that device with alerts allowed. Signing out removes the token for
+          that device; deleting your account removes every token and every
+          alert preference stored with it.
+        </li>
+        <li>
           <strong>Crash and error reports</strong> are the one exception, and
           they do expire. Firebase Crashlytics ages them out on its own
           schedule, typically about 90 days. As described above, they contain no
@@ -474,8 +537,9 @@
         <li>
           <strong>Delete your account.</strong> On the Team tab, under "Danger
           zone", choose Delete my account and confirm with your password. This
-          deletes your sign-in and your profile, and removes you from every team
-          you are on. If you are the only owner of a team, the app will ask you to make another coach an owner or to delete that team first. Otherwise the team would be left with nobody able to administer it.
+          deletes your sign-in and your profile, removes you from every team
+          you are on, and deletes any notification tokens and alert preferences
+          stored with the account. If you are the only owner of a team, the app will ask you to make another coach an owner or to delete that team first. Otherwise the team would be left with nobody able to administer it.
         </li>
       </ul>
 
@@ -501,9 +565,11 @@
       <p>
         High school players may be invited by their coaching staff to follow
         their own team in the read-only "Fan" role. A player who does so creates
-        an account with an email address and a password, and that is the only
-        information the app collects from them; they cannot enter or change any
-        information about themselves or anyone else. If you believe an account
+        an account with an email address and a password, and — only if they
+        allow game alerts — a notification token for their device, as described
+        in section 4. That is the only information the app collects from them;
+        they cannot enter or change any information about themselves or anyone
+        else. If you believe an account
         was created by someone under 13, or that roster information was entered
         that should not have been, email
         <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
