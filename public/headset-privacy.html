@@ -61,9 +61,32 @@
   which is correct only until the SDK ships. §4 is also the spec the
   implementation must meet — no user id, no names, no team name, no invite code,
   and no audio ever — so copy SideKick's `Sideline/Firebase/CrashReporting.swift`,
-  which already enforces exactly that. The doc comment on
-  `Headset/Support/DiagnosticsExport.swift` still cites the deleted claim and
-  should be corrected when that project is next touched.
+  which already enforces exactly that.
+
+  **Revised 2026-09-15, and this reverses the paragraph above.** The security
+  read of Headset 1.1 found that §4 over-declared: writing it ahead of the SDK
+  made the page describe a crash-reporting service that is not linked in the
+  binary and has not been for the three builds since. A policy that claims more
+  collection than the app performs is still a policy that is not true, and it is
+  the half nobody checks. So §4 now says what is actually the case — no
+  crash-reporting service, no automatic report, and the only diagnostic thing
+  that leaves the phone is the log a coach taps Send on — and the three places
+  that leaned on it (the summary note, the processor list, the retention list)
+  say the same. The claim is deliberately narrow: **not** "collects nothing",
+  which would rot the first time anything shipped, but "no crash-reporting
+  service, nothing sent automatically", beside a list of what the app does
+  collect.
+
+  If Crashlytics or an equivalent ever does land, §4 goes back to something like
+  its 2026-08-28 wording and this page changes **before** the build that links
+  it, not after — along with `PrivacyInfo.xcprivacy` and the App Store Connect
+  answers, which still declare no collection and are now correct rather than
+  provisionally correct. The doc comment on
+  `Headset/Support/DiagnosticsExport.swift` was corrected in the same sitting.
+  The one sentence about listening in was added to "What happens to your voice"
+  at the same time: a coach can keep a one-way ear on another channel, and
+  everyone on it sees his name while he does — a fact about the app that the
+  page had never mentioned.
 -->
 <html lang="en">
 <head>
@@ -109,7 +132,7 @@
       <div>
       <span class="eyebrow">Sideline Headset</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 28 August 2026 (updated)</p>
+      <p class="meta">Effective 15 September 2026 (updated)</p>
       </div>
     </div>
   </div>
@@ -128,9 +151,10 @@
           the line: your name, which channel you are on, and whether you are
           muted. It contains no student or player information of any kind. There
           are no ads, and nothing is ever sold or used to track you across other
-          apps or websites. The one thing it sends that nobody typed in is a
-          crash and error report when something goes wrong; those carry no audio,
-          no names, and are not linked to your account.
+          apps or websites. There is no crash-reporting service in the app, so
+          nothing about a failure is sent automatically; the one diagnostic thing
+          that can leave your phone is a technical log you choose to send
+          yourself.
         </p>
       </div>
 
@@ -177,6 +201,12 @@
         not one that is switched off, not one reserved for later. If a school,
         a parent, or a court asked for a recording of what a staff said on the
         line, there would be nothing to produce.
+      </p>
+
+      <p>
+        One coach can keep a one-way ear on another channel of his own staff
+        &mdash; he hears it and cannot talk on it &mdash; and everyone on that
+        channel sees his name on their screen for as long as he is listening.
       </p>
 
       <h2>Information the app collects</h2>
@@ -265,49 +295,37 @@
       <h3>4. Crash and error reports</h3>
 
       <p>
-        When the app crashes, or when something inside it fails quietly &mdash; a
-        connection that drops and will not come back, a channel that will not
-        join &mdash; it may send a diagnostic report so the problem can be found
-        and fixed. Apart from the account and line information above, this is the
-        only thing the app sends that nobody typed in.
+        <strong>There is no crash-reporting service in this app.</strong> No
+        crash reporter, no error-reporting SDK, nothing that watches for a
+        failure and sends a report about it. When the app crashes, or when a
+        connection drops and will not come back, nothing about it is sent to us.
       </p>
 
-      <p>A report contains:</p>
+      <p>
+        If your iPhone is set to share analytics with Apple, iOS may send Apple
+        its own crash log, which Apple may pass on to developers. That is a
+        setting on your phone, between you and Apple, and you can turn it off in
+        Settings &rsaquo; Privacy &amp; Security &rsaquo; Analytics &amp;
+        Improvements. It is not something this app switches on or reads.
+      </p>
 
-      <ul>
-        <li>what kind of failure it was, and where in the app it happened;</li>
-        <li>the version of the app, the device model, and the iOS version;</li>
-        <li>connection state &mdash; that a link failed, and at which stage;</li>
-        <li>a random identifier for that installation of the app, which is what lets the service count how many devices a problem affects rather than just how many times it happened.</li>
-      </ul>
+      <p>
+        The only diagnostic information that ever leaves your phone because of
+        this app is the technical log <strong>you</strong> choose to send &mdash;
+        see <a href="#diagnostics">sending a diagnostic log</a>, which describes
+        what is in it. Nothing goes automatically, and the button has to be
+        tapped by a coach.
+      </p>
 
       <div class="note">
         <p>
-          <strong>Nothing that identifies a person goes into one, and no audio
-          ever does.</strong> Never a recording, never a transcript, never any
-          fragment of what was said on the line &mdash; none of that exists to
-          send, as described above. Never a coach's name or email address. Never
-          a team name. Never an invite code. And never any student or player
-          information, which this app does not hold at all.
+          <strong>What this does not mean.</strong> It does not mean the app
+          collects nothing &mdash; the account information and the on-the-line
+          record described above are real, and this page lists them. It means
+          there is no automatic report of a failure, and no third-party service
+          receiving one.
         </p>
       </div>
-
-      <p>
-        <strong>Reports are not linked to your account.</strong> Your user id is
-        deliberately not attached to them, so a report cannot be traced back to a
-        named coach or a named staff. The installation identifier above is not
-        your account, not your name, and not a device identifier used for
-        advertising.
-      </p>
-
-      <p>
-        These reports are handled by a crash and error reporting service, and
-        they age out on that service's own schedule rather than being kept
-        indefinitely. They are separate from the technical log kept on your own
-        phone, which is never sent anywhere unless you choose to send it &mdash;
-        see <a href="#diagnostics">sending a diagnostic log</a>. They are used only to find and fix faults in the app, never
-        for advertising, marketing, profiling, or building any picture of you.
-      </p>
 
       <h3>5. That is the whole list</h3>
 
@@ -363,8 +381,7 @@
       </p>
 
       <p>
-        <strong>This log is separate from the reports above, and it is yours
-        to send or not.</strong> Because the failures a headset actually has are
+        <strong>Nothing sends this log but you.</strong> Because the failures a headset actually has are
         usually not crashes
         &mdash; a coach simply stops being audible &mdash; there is a
         <strong>Send diagnostics</strong> button under Settings. Tapping it hands
@@ -416,10 +433,10 @@
       </ul>
 
       <p>
-        <strong>A crash and error reporting service</strong> handles the
-        reports described in section 4, and nothing sent to it identifies you. There are no advertising
-        networks, no attribution or measurement services, and nothing that
-        tracks you across other apps or websites.
+        <strong>There is no crash or error reporting service</strong>, so there
+        is nobody else on that list &mdash; see section 4. There are no
+        advertising networks, no attribution or measurement services, and
+        nothing that tracks you across other apps or websites.
       </p>
 
       <h2>How long data is kept</h2>
@@ -446,10 +463,11 @@
           for that case is a known improvement that has not yet been made.
         </li>
         <li>
-          <strong>Crash and error reports</strong> are aged out by the reporting
-          service on its own schedule rather than kept indefinitely. They carry
-          no audio, no names and no link to your account, so there is nothing in
-          them to trace back to you in the meantime.
+          <strong>Crash and error reports</strong> have no retention period
+          because the app sends none &mdash; see section 4. The technical log on
+          your phone is capped at roughly its most recent megabyte, and is
+          deleted when you sign out, when your account is deleted, and when the
+          app is removed.
         </li>
         <li>
           <strong>Account information</strong> is kept until you delete your
