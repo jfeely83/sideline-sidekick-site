@@ -1,0 +1,20 @@
+# Cloudflare Pages response headers.
+#
+# ── The one rule here is load-bearing ────────────────────────────────────────
+# /.well-known/apple-app-site-association has NO file extension, so Pages has
+# nothing to infer a type from and serves it as a generic download. Apple's CDN
+# refuses an AASA that is not application/json, and it refuses it silently: the
+# app's Associated Domains entitlement is fine, the file is right there in a
+# browser, and universal links simply do not work. Added 2026-09-16 with the
+# join link (app repo: Sideline/Support/JoinLink.swift, docs/JOIN-LINK.md).
+#
+# Three other things Apple needs, none of which are configured here because
+# Pages already does them: HTTPS (the zone forces it), NO redirect on the way to
+# the file (it is a real file, and assets win over everything), and no
+# authentication in front of it.
+#
+# Cache: an hour. Apple's CDN caches it far longer anyway, so this only affects
+# how fast a correction reaches a device that fetches directly.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+  Cache-Control: public, max-age=3600

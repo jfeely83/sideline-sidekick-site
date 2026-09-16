@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  /join/<CODE> — the landing page for a team invite.
+  Added 2026-09-16 with the join link (app repo: Sideline/Support/JoinLink.swift,
+  docs/JOIN-LINK.md). Written by Lane J; Jeff pushes.
+
+  WHAT THIS PAGE IS FOR, AND WHO EVER SEES IT
+
+  A coach shares one text. It carries https://sideline-sidekick.com/join/K7XQ2A
+  and, on its own line, "Your join code is K7XQ2A".
+
+  A parent who HAS the app never sees this page at all: iOS matches the URL
+  against /.well-known/apple-app-site-association and opens the app instead.
+  This page is the other parent — the one who does not have it yet. So it has
+  exactly one job: show them the code, get them to the App Store, and make sure
+  the code is still in hand when the app opens.
+
+  THE CODE IS NOT A SECRET. It is in the text message already, it is printed on
+  the team's own Members screen, and it is stored in cleartext on the team
+  document. It grants a FAN role and only after signing in. That is why this
+  page can print it in 48px type — and also why it carries
+  <meta name="robots" content="noindex">: not secret is not the same as
+  something that should turn up in a search for a school's name.
+
+  HOW THE CODE GETS ONTO THE PAGE
+
+  No build step and no server — the code is read in the browser, from the path
+  (/join/K7XQ2A) or from ?code=K7XQ2A, and validated against the same rule the
+  app uses: six ASCII alphanumerics, upper-cased. Anything else falls back to
+  the team-less headline, which is the state this file is written in. That is
+  deliberate: the no-JavaScript, no-code rendering must be a page that still
+  makes sense, because it is also what a link preview crawler sees.
+
+  HOW /join/K7XQ2A RESOLVES TO THIS FILE
+
+  It does not, on its own. There is no such file, and since 2026-09-07 this site
+  serves a real 404 for a miss (DEPLOY.md → "Unknown paths"). The rewrite lives
+  in public/_redirects. If that rule is ever removed, every shared link 404s —
+  and the 404 page is a perfectly nice page, which is what makes that failure
+  hard to spot.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a team | Sideline SideKick Tracker</title>
+<meta name="description" content="Someone invited you to follow their football team on Sideline SideKick Tracker. Install the app and enter your join code.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C243C">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="preload" href="/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+
+<!--
+  The iMessage preview. This is the first thing the parent actually sees — the
+  bubble renders the card before they read a word of the message — so it says
+  "invitation", not "product". No og:url: a canonical URL here would point every
+  share at /join/ without its code, and Messages would show the same card for
+  every team, which is fine, but a crawler following it would strip the code.
+  og:image is the app mark; there is no per-team artwork to use and a generic
+  screenshot would be worse than the icon.
+-->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sideline SideKick Tracker">
+<meta property="og:title" content="You're invited to follow a team">
+<meta property="og:description" content="Live score, play-by-play and stats from the sideline. Tap to install Sideline SideKick Tracker and join with your code.">
+<meta property="og:image" content="https://sideline-sidekick.com/logo.png">
+<meta property="og:image:alt" content="The Sideline SideKick Tracker app mark">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="" width="30" height="30">
+      Sideline SideKick Tracker
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/fans">For parents</a>
+      <a href="/guides">Guides</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head">
+    <div class="wrap wrap--narrow">
+      <span class="eyebrow">Team invite</span>
+      <!--
+        Team-less on purpose. This page has no way to know the team's name —
+        looking one up would mean exposing a code-to-team endpoint to the open
+        web, which is a lookup the app does behind a signed-in Firestore rule and
+        the website has no business doing. The app shows the name on the join
+        screen, before anyone commits to anything.
+      -->
+      <h1>Join a team on SideKick Tracker</h1>
+      <p class="meta">Someone on the staff sent you this. It takes about a minute.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap wrap--narrow prose">
+
+      <div id="code-card" class="callout" hidden>
+        <p class="code-label">Your join code</p>
+        <p class="code-value"><span id="code">&nbsp;</span></p>
+        <p class="code-note" id="code-note">Copied to your clipboard when you tap Install.</p>
+      </div>
+
+      <div id="no-code" class="callout">
+        <p>
+          <strong>No code in this link.</strong> Ask whoever invited you to send
+          it again — the message they share has the code on its own line, and
+          the link should end in six characters.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" id="install"
+           href="https://apps.apple.com/us/app/sideline-sidekick-tracker/id6798818893"
+           rel="noopener">Install the free app</a>
+        <a class="btn btn--ghost" href="/fans">What will I see?</a>
+      </div>
+
+      <p class="btn-note">
+        Free for parents, players and fans. The app is on iPhone and iPad.
+      </p>
+
+      <h2>Already have the app?</h2>
+      <p>
+        Tap the link again and it will open straight to the join screen with your
+        code filled in. If it opens this page instead, open the app yourself, go
+        to <strong>Team &rarr; Join a team with a code</strong>, and enter the six
+        characters above.
+      </p>
+
+      <h2>What you get</h2>
+      <ul>
+        <li>The live score and the play-by-play while the game is going on.</li>
+        <li>Season stats for the whole team, and for your player.</li>
+        <li>The schedule and the result of every game.</li>
+      </ul>
+      <p>
+        You join as a <strong>fan</strong>. Fans never see the staff's formations,
+        play names or game plan &mdash; that side of the app is for coaches. The
+        <a href="/fans">parents' page</a> shows exactly what a fan sees.
+      </p>
+
+      <div class="callout">
+        <p>
+          Something not working? Email
+          <a href="mailto:support@sideline-sidekick.com">support@sideline-sidekick.com</a>
+          and say which team invited you.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="colophon">Sideline SideKick Tracker &middot; Jeffrey Feely</p>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/fans">For parents</a>
+      <a href="/faq">FAQ</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  /* Local to this page — the code is the only thing on the site that is set
+     this large, and it has no business in the shared stylesheet. */
+  .code-label { margin: 0; font-size: .85rem; letter-spacing: .08em;
+                text-transform: uppercase; color: var(--muted); }
+  .code-value { margin: .2em 0 .35em; font-size: clamp(2.2rem, 12vw, 3.4rem);
+                font-weight: 800; letter-spacing: .12em; line-height: 1.05;
+                font-variant-numeric: tabular-nums; color: var(--accent-ink);
+                /* A code is read one character at a time and typed by hand.
+                   `user-select: all` makes one tap select the whole thing. */
+                user-select: all; -webkit-user-select: all; word-break: break-all; }
+  .code-note { margin: 0; font-size: .9rem; color: var(--muted); }
+</style>
+
+<script>
+/*
+  Everything below is progressive enhancement. With JavaScript off the page
+  still reads as an invitation and the App Store button still works; the code
+  just is not shown, and the "no code in this link" note stands in for it.
+
+  The validation is deliberately the same rule as JoinLink.normalizedCode in the
+  app: exactly six ASCII letters or digits, upper-cased. Keep them in step. A
+  page that accepted something the app refuses would print a code that cannot be
+  used, which is worse than printing nothing.
+*/
+(function () {
+  "use strict";
+
+  function normalize(raw) {
+    if (!raw) return null;
+    var value = decodeURIComponent(String(raw)).trim().toUpperCase();
+    return /^[A-Z0-9]{6}$/.test(value) ? value : null;
+  }
+
+  function codeFromLocation() {
+    // Path form first — /join/K7XQ2A — because that is what the app writes.
+    var segments = window.location.pathname.split("/").filter(Boolean);
+    if (segments.length >= 2 && segments[0].toLowerCase() === "join") {
+      var fromPath = normalize(segments[1]);
+      if (fromPath) return fromPath;
+    }
+    // Query form — /join/?code=K7XQ2A — which is what this page rewrites the
+    // address bar to, and therefore what gets copied out of a browser.
+    var params = new URLSearchParams(window.location.search);
+    return normalize(params.get("code"));
+  }
+
+  var code = codeFromLocation();
+  var card = document.getElementById("code-card");
+  var none = document.getElementById("no-code");
+  var install = document.getElementById("install");
+
+  if (!code) return;
+
+  document.getElementById("code").textContent = code;
+  card.hidden = false;
+  none.hidden = true;
+  document.title = "Join with code " + code + " | Sideline SideKick Tracker";
+
+  /*
+    Put the code on the clipboard on the way to the App Store.
+
+    This is the whole reason the Install button is scripted. The parent leaves
+    for the App Store, waits for a download, opens an app they have never seen,
+    signs up — and by then the six characters are three screens back. The app
+    reads the clipboard on its first join screen WITHOUT opening the paste
+    banner (Sideline/Support/PendingJoin.swift, ClipboardJoin), so a code put
+    here turns into "Join the Rams?" there.
+
+    Deliberately NOT on page load: writing to the clipboard the moment a page
+    opens is the behaviour that got clipboard access restricted in the first
+    place, and Safari refuses it anyway outside a user gesture. On the tap it is
+    a gesture, and it is something the parent has asked for.
+
+    Failure is silent and harmless. If the write is refused the code is still on
+    screen and still in the text message.
+  */
+  install.addEventListener("click", function () {
+    if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+    navigator.clipboard.writeText(code).then(function () {
+      document.getElementById("code-note").textContent =
+        "Copied. Paste it, or the app will offer it for you.";
+    }, function () { /* refused — the code is on the screen either way */ });
+  });
+
+  /*
+    Normalise the address bar to /join/?code=K7XQ2A.
+
+    Two reasons. It is the form that survives being copied into another text
+    message and pasted into a browser that mangles path segments; and it leaves
+    a URL the app also understands (JoinLink parses both). replaceState, not
+    pushState — the back button should go back to the message, not round this
+    page again.
+  */
+  if (window.history && window.history.replaceState) {
+    var tidy = "/join/?code=" + code;
+    if (window.location.pathname + window.location.search !== tidy) {
+      window.history.replaceState(null, "", tidy);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

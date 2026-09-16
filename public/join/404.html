@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  The fallback for /join/<CODE>, added 2026-09-16 beside public/_redirects.
+
+  Pages walks up the directory tree for the closest 404.html, so this one is
+  served for anything under /join/ that is not a file. It exists only for the
+  case where the "/join/* /join/index.html 200" rewrite in public/_redirects is
+  thrown out by the redirect parser's loop detection — see the long note in that
+  file. If the rewrite works, nothing ever reaches this page.
+
+  It is deliberately NOT a copy of the invite page. Two copies of a page is how
+  one of them stops being updated. It carries the Open Graph tags (so an iMessage
+  preview is right either way, since the preview is fetched from this exact URL)
+  and it bounces to /join/?code=CODE, which is a real asset path and therefore a
+  clean 200.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a team | Sideline SideKick Tracker</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C243C">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="stylesheet" href="/styles.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sideline SideKick Tracker">
+<meta property="og:title" content="You're invited to follow a team">
+<meta property="og:description" content="Live score, play-by-play and stats from the sideline. Tap to install Sideline SideKick Tracker and join with your code.">
+<meta property="og:image" content="https://sideline-sidekick.com/logo.png">
+<meta property="og:image:alt" content="The Sideline SideKick Tracker app mark">
+<meta name="twitter:card" content="summary">
+<script>
+(function () {
+  "use strict";
+  var segments = window.location.pathname.split("/").filter(Boolean);
+  var raw = (segments.length >= 2 && segments[0].toLowerCase() === "join") ? segments[1] : "";
+  var code = /^[A-Za-z0-9]{6}$/.test(raw) ? raw.toUpperCase() : null;
+  // replace, not assign: the back button should go to the message, not here.
+  window.location.replace(code ? "/join/?code=" + code : "/join/");
+})();
+</script>
+</head>
+<body>
+<main id="main">
+  <div class="wrap wrap--narrow prose">
+    <h1>Join a team on SideKick Tracker</h1>
+    <p><a href="/join/">Open the invite page</a> to see your code and install the app.</p>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Cloudflare Pages rewrites. One rule, added 2026-09-16 for the join link.
+#
+# /join/K7XQ2A is not a file. Since 2026-09-07 this site serves a real 404 for
+# anything that is not a file (DEPLOY.md → "Unknown paths"), so without this the
+# link every coach shares would 404. This rewrites it — status 200, same URL in
+# the address bar — onto public/join/index.html, which reads the code out of the
+# path in the browser.
+#
+# READ THIS BEFORE TRUSTING THE RULE. The Pages redirect parser silently ignores
+# any rule it decides is a loop, and it decides that by looking at the
+# destination after stripping a trailing "/index": the old "/* /index.html 200"
+# in this file was rejected that way and did nothing for months while everyone
+# believed it was what served the home page. This rule's destination reduces to
+# "/join/", which matches "/join/*" with an empty splat, so it may well be
+# rejected on exactly the same grounds.
+#
+# That is why public/join/404.html exists beside it. If this rule works, the 404
+# file is never reached. If the parser throws it away, Pages falls back to the
+# closest 404.html — which is public/join/404.html — and that file bounces to
+# /join/?code=CODE, a real asset path, so the parent still lands on the invite.
+# Belt and braces, because neither can be tested from a write-only lane and the
+# failure of either is invisible.
+#
+# To see which one you are getting:
+#     npm run dev      # watch for "Parsed N valid redirect rules" on startup
+#     curl -sI https://sideline-sidekick.com/join/K7XQ2A | head -1
+# 200 means the rule; 404 (with the invite page behind it) means the fallback.
+/join/*  /join/index.html  200

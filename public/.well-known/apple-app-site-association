@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["HB2FXSUNGN.com.feely.sideline"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Team invite links. Everything else on this site stays in the browser."
+          }
+        ]
+      }
+    ]
+  }
+}
