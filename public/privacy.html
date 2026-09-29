@@ -44,6 +44,16 @@
   narrowed. Written BEFORE the build that stores a token ships, on purpose:
   the policy has to be true on the day the first token lands. /index, /fans
   and /faq were grepped the same day and make no claim this contradicts.
+
+  Revised 2026-09-28 for logo uploads returning in 1.22 (docs/IMAGES-PLAN.md
+  and docs/IMAGES-CONTRACT.md in the app repo). "About logos" now describes
+  the real path: picker, resized copy to the server, metadata stripped, Google
+  Cloud Vision screen, developer review before any team member sees it,
+  rejected images deleted within 30 days. Cloud Vision is added to "Where the
+  data is stored" (Google, the same provider, so no new company). "How long
+  data is kept" gains the one timed deletion, and "Access by the developer"
+  gains logo review. The 30-day promise is enforced by the purgeRejectedImages
+  function; the legal-hold exception covers the quarantine case in plan §6.
 -->
 <html lang="en">
 <head>
@@ -86,7 +96,7 @@
     <div class="wrap wrap--narrow">
       <span class="eyebrow">Sideline SideKick Tracker</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 12 September 2026 (updated)</p>
+      <p class="meta">Effective 28 September 2026 (updated)</p>
     </div>
   </div>
 
@@ -165,9 +175,25 @@
 
       <div class="note">
         <p>
-          <strong>About logos.</strong> If a coach adds a team logo, the app asks
-          iOS for that one image through the standard photo picker and stores a
-          copy of it with the team. The app has no access to the rest of your photo library and never reads it. iOS hands over only the picture you pick. Adding a logo is optional and the app works without one.
+          <strong>About logos.</strong> If a coach adds a logo for their team or
+          for an opponent, the app asks iOS for that one image through the
+          standard photo picker. iOS hands over only the picture you pick; the
+          app has no access to the rest of your photo library. The app sends a
+          resized copy of that image to our server, where it is re-saved as a
+          plain image file, which removes its location and the other hidden
+          data a photo carries.
+        </p>
+        <p>
+          It is then checked automatically by Google Cloud Vision (Google
+          already provides the app's Firebase backend, described below), and
+          reviewed by the developer before any member of the team sees it.
+          Until it is approved, the only person who can see the copy on our
+          server is the developer. An approved logo is stored with the team and
+          is visible to the team's members, like the rest of the team's
+          information. An image that is not approved is deleted within 30 days,
+          except where the law requires us to keep it. If someone on the team
+          reports a logo, the developer reviews it and may remove it. Adding a
+          logo is optional and the app works without one.
         </p>
       </div>
 
@@ -355,6 +381,9 @@
         <li><strong>Subscriptions and billing.</strong> Seeing which accounts
             are subscribed, and putting right anything that has gone wrong with
             a purchase.</li>
+        <li><strong>Reviewing logos.</strong> Looking at each logo a coach
+            uploads, before anyone on the team sees it, to approve or reject
+            it, and looking again at any logo someone reports.</li>
         <li><strong>Security and abuse.</strong> Investigating a report, or
             something that looks wrong.</li>
         <li><strong>Where the law requires it,</strong> such as a valid legal
@@ -426,7 +455,7 @@
       <h2>Where the data is stored</h2>
 
       <p>
-        The app uses Google Firebase — specifically Firebase Authentication and Cloud Firestore for account and team data, Firebase Cloud Messaging to deliver game alerts, and Firebase Crashlytics for the crash and error reports described above — so all of it is stored on Google Cloud infrastructure. Google acts as a hosting and processing provider for
+        The app uses Google Firebase — specifically Firebase Authentication and Cloud Firestore for account and team data, Firebase Cloud Messaging to deliver game alerts, and Firebase Crashlytics for the crash and error reports described above — so all of it is stored on Google Cloud infrastructure. Uploaded logos are also checked by Google Cloud Vision, part of the same Google Cloud service, as described under "About logos". Google acts as a hosting and processing provider for
         this data; it is not shared with Google for Google's own advertising or
         marketing. You can read how Google handles data in that role at
         <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>
@@ -458,7 +487,8 @@
         no automatic expiry.</strong> That is deliberate. A coaching staff wants
         last season's games, and the season before that — a policy that quietly
         deleted a team's history after some number of months would break the
-        thing the app is for. So nothing is deleted on a timer.
+        thing the app is for. So team data is not deleted on a timer. The one
+        thing that is, a logo that was not approved, is listed below.
       </p>
 
       <p>
@@ -484,14 +514,20 @@
           and there is no way for us to restore them afterwards.
         </li>
         <li>
+          <strong>Logos that are not approved</strong> are deleted within 30
+          days of the decision, except where the law requires us to keep one.
+          An approved logo is kept with the team like the rest of its
+          information.
+        </li>
+        <li>
           <strong>Notification tokens</strong> are kept while you stay signed in
           on that device with alerts allowed. Signing out removes the token for
           that device; deleting your account removes every token and every
           alert preference stored with it.
         </li>
         <li>
-          <strong>Crash and error reports</strong> are the one exception, and
-          they do expire. Firebase Crashlytics ages them out on its own
+          <strong>Crash and error reports</strong> expire too.
+          Firebase Crashlytics ages them out on its own
           schedule, typically about 90 days. As described above, they contain no
           names and are not linked to your account.
         </li>
