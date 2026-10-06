@@ -96,7 +96,7 @@
     <div class="wrap wrap--narrow">
       <span class="eyebrow">Sideline SideKick Tracker</span>
       <h1>Privacy Policy</h1>
-      <p class="meta">Effective 28 September 2026 (updated)</p>
+      <p class="meta">Effective 6 October 2026 (updated)</p>
     </div>
   </div>
 
@@ -203,8 +203,9 @@
         When the app crashes, or when something inside it fails quietly — a game
         that will not open, a save the server refuses, a roster import that comes
         back empty — the app sends a report so the problem can be found and
-        fixed. Apart from the notification token described in section 4, this
-        is the only information the app collects that nobody typed in.
+        fixed. Apart from the tokens and the app version check-in described in
+        sections 4 to 6, this is the only information the app collects that
+        nobody typed in.
       </p>
 
       <p>A report contains:</p>
@@ -293,6 +294,29 @@
         account is deleted. The alerts themselves are sent by a server-side
         function that reads only the game's status and its scores; it never
         reads the playbook or the individual plays.
+      </p>
+
+      <h3>5. Lock-screen scoreboard</h3>
+
+      <p>
+        If a team's owner turns on the lock-screen scoreboard, members of the
+        team (or only its coaches, if the owner chooses) can follow a game on
+        their lock screen. When you follow, the app stores a token for that
+        scoreboard with your account so our server can update it. The token
+        belongs to that one game. It is deleted when the game ends, when you
+        stop following, and when your account is deleted. The scoreboard shows
+        the score and, if the owner chooses, the down and distance. It does not
+        name players. Team logos on the scoreboard are copied onto your phone so
+        the lock screen can show them.
+      </p>
+
+      <h3>6. App version</h3>
+
+      <p>
+        Once a day when you open the app, it records which version of the app
+        your phone is running and the date, with your account. We use this to
+        know when everyone has updated before we stop supporting an old version.
+        It is not used to track what you do in the app.
       </p>
 
       <p>
@@ -447,9 +471,10 @@
       </ul>
 
       <p>
-        Crash and error reports, and the notification token if you turn game
-        alerts on, are the two things the app sends that nobody typed in, and
-        what each contains is described above.
+        Crash and error reports, the notification token if you turn game alerts
+        on, the lock-screen scoreboard token if you follow a game, and the daily
+        app version check-in are the things the app sends that nobody typed in.
+        What each contains is described above.
       </p>
 
       <h2>Where the data is stored</h2>
@@ -526,6 +551,15 @@
           alert preference stored with it.
         </li>
         <li>
+          <strong>Lock-screen scoreboard tokens</strong> last only for the game
+          you followed, and are deleted when it ends or you stop following.
+        </li>
+        <li>
+          <strong>The app version check-in</strong> is kept with your account
+          and replaced each day. Signing out on a device removes it for that
+          device.
+        </li>
+        <li>
           <strong>Crash and error reports</strong> expire too.
           Firebase Crashlytics ages them out on its own
           schedule, typically about 90 days. As described above, they contain no
@@ -574,8 +608,9 @@
           <strong>Delete your account.</strong> On the Team tab, under "Danger
           zone", choose Delete my account and confirm with your password. This
           deletes your sign-in and your profile, removes you from every team
-          you are on, and deletes any notification tokens and alert preferences
-          stored with the account. If you are the only owner of a team, the app will ask you to make another coach an owner or to delete that team first. Otherwise the team would be left with nobody able to administer it.
+          you are on, and deletes any notification tokens, lock-screen scoreboard
+          tokens, app version check-ins and alert preferences stored with the
+          account. If you are the only owner of a team, the app will ask you to make another coach an owner or to delete that team first. Otherwise the team would be left with nobody able to administer it.
         </li>
       </ul>
 
